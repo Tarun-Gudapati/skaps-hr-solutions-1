@@ -32,7 +32,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 700; color: var(--text); }
 /* Layout */
 .container { width: min(var(--container), calc(100% - 2 * var(--gutter))); margin-inline: auto; }
 .container-wide { width: min(1420px, calc(100% - 2 * var(--inset))); margin-inline: auto; }
-.section { padding-block: clamp(64px, 8vw, 112px); position: relative; }
+.section { padding-block: clamp(56px, 8vw, 112px); position: relative; }
 .section-sm { padding-block: clamp(48px, 5vw, 64px); }
 .section-head { display: grid; gap: 16px; margin-bottom: clamp(32px, 4vw, 56px); }
 .section-head.center { justify-items: center; text-align: center; }

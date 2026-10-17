@@ -11,11 +11,12 @@ import { Arrow, DemoButton, LogoMarquee, StatsStair, Testimonials, FAQ, CTABand,
 import { services, pains, advantages, industries, needs, benefits, aiPillars, REGIONS, YEARS } from '../data/site'
 import worldMap from '../assets/world-map.png'
 
+// AI card leads — it is the headline capability of the redesigned site.
 const valueCards = [
+  ['Workforce intelligence powered by AI', 'SKAPS Intelligence assists with candidate matching, payroll anomaly detection and compliance monitoring.', card4, true],
   ['Efficient Payroll Management', 'Rely on our ISO-certified, automated payroll to make sure your team gets paid accurately, on time, in India and the US.', card1],
   ['Access to Qualified Talent Networks', 'Extensive professional and industry networks with proactive, targeted candidate outreach.', card2],
   ['Reliable Compliance Solutions', 'A dedicated compliance team that stays current with labor laws and statutory requirements.', card3],
-  ['Workforce intelligence powered by AI', 'SKAPS Intelligence assists with candidate matching, payroll anomaly detection and compliance monitoring.', card4],
 ]
 
 // Floating glass tiles around the statement headline. [className, accent, parallax multiplier]
@@ -28,17 +29,18 @@ function Hero() {
       <div className="hero-glow" aria-hidden="true" />
       <Wordmark text="SKAPS" />
       <div className="container hero-copy">
-        <span className="eyebrow hero-eyebrow">Trusted HR Partner · {YEARS} years of industry excellence</span>
+        <Link to="/ai" className="hero-ai"><span className="dot" /><Icon name="ai" />New · SKAPS Intelligence — AI-assisted hiring, payroll &amp; compliance <Arrow style={{ width: 14, height: 14 }} /></Link>
         <h1 className="t-h1-center">Scale Your Workforce with Reliable HR Solutions.</h1>
         <p className="t-muted measure-sm">SKAPS HR Solutions helps growing businesses manage payroll, hire skilled professionals, and stay fully compliant with labor regulations. Our team handles the complexity of workforce management so you can focus on building and expanding your business.</p>
-        <div className="actions" style={{ justifyContent: 'center' }}>
+        <div className="actions hero-actions">
           <DemoButton>Schedule a Consultation</DemoButton>
           <Link className="btn btn-secondary" to="/services">Explore Our Services</Link>
         </div>
+        <span className="eyebrow hero-eyebrow">Trusted HR Partner · {YEARS} years of industry excellence</span>
         <div className="hero-floats" aria-hidden="true">
-          <div className="float f1"><Icon name="check" /><span>Payroll Processed<strong>100% Accurate</strong></span></div>
-          <div className="float f2"><Icon name="people" /><span>New Hires<strong>+24 This Week</strong></span></div>
-          <div className="float f3"><Icon name="shield" /><span>Compliance Status<strong>Verified</strong></span></div>
+          <div className="float f1"><Icon name="ai" /><span>AI candidate match<strong>94% role fit</strong></span></div>
+          <div className="float f2"><Icon name="alert" /><span>Payroll anomaly caught<strong>Before cycle closed</strong></span></div>
+          <div className="float f3"><Icon name="shield" /><span>Compliance watchtower<strong>PF filing due · tracked</strong></span></div>
         </div>
       </div>
     </section>
@@ -49,8 +51,9 @@ function ValueCards() {
   return (
     <section className="value-strip">
       <div className="container grid grid-4">
-        {valueCards.map(([t, d, accent], i) => (
-          <article className="card card-frost value-card reveal" key={t} style={{ transitionDelay: `${i * 60}ms` }}>
+        {valueCards.map(([t, d, accent, ai], i) => (
+          <article className={`card card-frost value-card reveal${ai ? ' value-card-ai' : ''}`} key={t} style={{ transitionDelay: `${i * 60}ms` }}>
+            {ai && <span className="ai-tag"><Icon name="ai" />AI</span>}
             <h2 className="t-h3">{t}</h2>
             <p className="t-small t-muted">{d}</p>
             <img className="value-art" src={accent} alt="" aria-hidden="true" loading="lazy" />
@@ -226,13 +229,18 @@ function AIBlock() {
           <span className="eyebrow" style={{ color: 'var(--dev-cyan)' }}>SKAPS INTELLIGENCE</span>
           <h2 className="t-h2 reveal" style={{ color: '#fff', marginTop: 12 }}>Workforce intelligence <span className="hl-blue">powered by AI.</span></h2>
           <p className="reveal" style={{ color: 'var(--on-dark-3)', marginTop: 16, maxWidth: 480 }}>Our in-house AI layer works alongside SKAPS consultants to match candidates, catch payroll anomalies before a cycle closes and track statutory changes across India, the US and Australia — with every recommendation reviewed by a human expert.</p>
+          <div className="ai-stats reveal">
+            <div><strong>&lt;30 mins</strong><span>to a role-ready shortlist</span></div>
+            <div><strong>99.9%</strong><span>payroll accuracy with anomaly checks</span></div>
+            <div><strong>1</strong><span>human expert reviews every recommendation</span></div>
+          </div>
           <div className="actions" style={{ marginTop: 28 }}>
             <Link className="btn btn-inverse" to="/ai">Explore SKAPS Intelligence <Arrow /></Link>
             <Link className="btn btn-ghost" to="/about#ai">How we build with AI</Link>
           </div>
         </div>
         <div className="ai-pillars">
-          {aiPillars.slice(0, 4).map(([t, d, icon]) => (
+          {aiPillars.map(([t, d, icon]) => (
             <div className="ai-pillar reveal" key={t}><span className="ico-box"><Icon name={icon} /></span><div><strong>{t}</strong><p className="t-small">{d}</p></div></div>
           ))}
         </div>
@@ -299,13 +307,13 @@ export default function Home() {
       <Hero />
       <LogoMarquee intro={<>Trusted By Organizations Managing <b>Modern And Distributed Workforces</b> Across Multiple Industries.</>} />
       <ValueCards />
+      <AIBlock />
       <Statement />
       <ServicesBento />
       <StatsStair title="Reliable Compliance for a Secure Workforce." copy="Managing workforce compliance is essential for protecting both organizations and employees. SKAPS ensures that all workforce operations follow the latest labor regulations and statutory requirements." />
       <PainAdvantage />
       <Segments />
       <IndustriesRow />
-      <AIBlock />
       <Process />
       <Global />
       <Testimonials />

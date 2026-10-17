@@ -37,7 +37,7 @@ export default function AI() {
       <section className="section">
         <div className="container">
           <div className="dev-two" style={{ alignItems: 'end', marginBottom: 40 }}>
-            <h2 className="t-h2" style={{ fontWeight: 400, letterSpacing: '-.03em' }}>Choose the surface that fits <span style={{ color: '#4d8cff', fontStyle: 'italic' }}>your work</span></h2>
+            <h2 className="t-h2" style={{ fontWeight: 400, letterSpacing: '-.03em' }}>Choose the surface that fits <span style={{ color: 'var(--dev-cyan)', fontStyle: 'italic' }}>your work</span></h2>
             <p className="t-muted">Everything SKAPS does is available through the intelligence layer that works best for how your team operates.</p>
           </div>
           <div className="surfaces">
@@ -49,7 +49,7 @@ export default function AI() {
               </article>
             ))}
           </div>
-          <h2 className="t-display t-center" style={{ fontWeight: 400, marginTop: 96 }}>Better <span style={{ color: '#4d8cff', fontStyle: 'italic' }}>together</span></h2>
+          <h2 className="t-display t-center" style={{ fontWeight: 400, marginTop: 96 }}>Better <span style={{ color: 'var(--dev-cyan)', fontStyle: 'italic' }}>together</span></h2>
           <p className="t-center t-muted measure" style={{ margin: '20px auto 0' }}>Talent, Payroll and Compliance intelligence are designed to work together. Most SKAPS clients use all three — and every recommendation is reviewed by an experienced consultant before it reaches you.</p>
         </div>
       </section>
@@ -67,7 +67,7 @@ export default function AI() {
 
       <section className="section">
         <div className="container dev-two wide" style={{ gap: 48 }}>
-          <h2 className="t-h2" style={{ fontWeight: 400, letterSpacing: '-.03em' }}>Using AI at SKAPS is as <span style={{ color: '#4d8cff', fontStyle: 'italic' }}>secure</span> as working with us has always been.</h2>
+          <h2 className="t-h2" style={{ fontWeight: 400, letterSpacing: '-.03em' }}>Using AI at SKAPS is as <span style={{ color: 'var(--dev-cyan)', fontStyle: 'italic' }}>secure</span> as working with us has always been.</h2>
           <div className="secure-grid">
             {[['confidentiality', 'Strict employee-data confidentiality', 'Your employee and payroll data is used only to deliver your engagement — never to train third-party AI models.'], ['human review', 'Human-in-the-loop by default', 'Every AI recommendation — a shortlist, a flagged payslip, a compliance alert — is validated by a SKAPS specialist.'], ['governed access', 'Governed, role-based access', 'Employees see their own records; your admins see your organization. Nothing more.'], ['audit-ready', 'Audit-ready by design', 'Every automated action is logged with clear documentation, so audits and reviews are straightforward.']].map(([l, t, d]) => <div className="secure-card reveal" key={t}><span className="label">{l}</span><strong>{t}</strong><p>{d}</p></div>)}
           </div>

@@ -38,4 +38,4 @@ export const menus = [
   },
 ]
 
-export const topLinks = [{ label: 'Contact', to: '/contact' }]
+export const topLinks = [{ label: 'SKAPS AI', to: '/ai', badge: 'New' }, { label: 'Contact', to: '/contact' }]

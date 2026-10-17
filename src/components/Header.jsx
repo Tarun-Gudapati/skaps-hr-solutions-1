@@ -87,7 +87,7 @@ export default function Header({ polarity }) {
               </button>
             </li>
           ))}
-          {topLinks.map(l => <li className="nav-item" key={l.to} onMouseEnter={() => enter(null)}><Link to={l.to}>{l.label}</Link></li>)}
+          {topLinks.map(l => <li className="nav-item" key={l.to} onMouseEnter={() => enter(null)}><Link to={l.to}>{l.label}{l.badge && <span className="nav-badge">{l.badge}</span>}</Link></li>)}
         </ul>
         <div className="nav-right" onMouseEnter={() => enter(null)}>
           <a className="nav-phone" href={`tel:${PHONE_TEL}`}><Icon name="phone" />{PHONE}</a>
@@ -120,7 +120,7 @@ export default function Header({ polarity }) {
             {!sub ? (
               <ul className="drawer-root">
                 {menus.map(m => <li key={m.label}><button type="button" onClick={() => setSub(m.label)}>{m.label}<Icon name="chevronRight" /></button></li>)}
-                {topLinks.map(l => <li key={l.to}><Link to={l.to}>{l.label}</Link></li>)}
+                {topLinks.map(l => <li key={l.to}><Link to={l.to}>{l.label}{l.badge && <span className="nav-badge">{l.badge}</span>}</Link></li>)}
               </ul>
             ) : (
               <div className="drawer-sub">

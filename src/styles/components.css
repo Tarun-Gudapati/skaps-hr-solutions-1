@@ -90,6 +90,8 @@
 .nav-phone { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; font-size: 15px; border-radius: var(--r); }
 .nav-phone .ico { width: 18px; height: 18px; }
 .nav-bar .btn { height: 40px; padding: 8px 16px; font-size: 15px; }
+.nav-badge { display: inline-block; margin-left: 6px; padding: 2px 6px; border-radius: 999px; background: var(--lime-400); color: var(--ink); font-size: 10px; font-weight: 700; letter-spacing: .04em; line-height: 1.2; vertical-align: 2px; }
+.drawer .nav-badge { vertical-align: middle; font-size: 12px; padding: 3px 8px; }
 .nav-bar[data-polarity="inverse"]:not(.scrolled):not(.menu-open) .btn-primary-nav { background: var(--on-dark); color: var(--ink); border-color: var(--on-dark); }
 .burger { display: none; width: 44px; height: 44px; place-items: center; border-radius: var(--r); margin-left: auto; }
 .burger .ico { width: 26px; height: 26px; }
@@ -167,7 +169,7 @@
 .stair .step:nth-child(4) { padding-top: 100px; }
 .stair .step:nth-child(5) { padding-top: 60px; }
 @media (max-width: 900px) { .stair { grid-template-columns: repeat(2, 1fr); border: 0; } .stair .step { padding-top: 48px !important; border: 1px solid var(--ink); margin: -1px 0 0 -1px; } }
-@media (max-width: 480px) { .stair { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .stair .step { padding: 36px 18px 18px !important; } .stair .step:last-child { grid-column: 1 / -1; } .stair .t-stat { font-size: 36px; } }
 
 /* ---------- Testimonials carousel ---------- */
 .carousel { position: relative; }
@@ -266,4 +268,4 @@
 /* ---------- Title highlight (remote's lime→cyan sweep on key words) ---------- */
 .hl { background: linear-gradient(90deg, var(--lime-300), var(--teal-400) 50%, var(--blue-600)); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 100%; animation: sweep 6s linear infinite; }
 @keyframes sweep { 0% { background-position: 0% 0; } 100% { background-position: 200% 0; } }
-.hl-blue { background: linear-gradient(90deg, var(--blue-600), var(--cyan-300) 50%, var(--purple-500)); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 100%; animation: sweep 6s linear infinite; }
+.hl-blue { background: linear-gradient(90deg, var(--lime-300), var(--blue-400) 50%, var(--lime-300)); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 100%; animation: sweep 6s linear infinite; }

@@ -5,11 +5,14 @@ let uid = 0
 const id = (p) => `${p}-${++uid}`
 
 const palettes = {
-  purple: ['#2e005c', '#500087', '#b919ff', '#d893ff', '#f2deff'],
-  blue: ['#00285a', '#0056b5', '#057aff', '#5cdcfc', '#aefcff'],
-  lime: ['#2c3e00', '#5d8200', '#a2eb00', '#f0ff5a', '#f8ffc5'],
-  cyan: ['#003437', '#00848a', '#33c0c8', '#a5eef3', '#e7feff'],
-  orange: ['#662c00', '#b56006', '#ff9600', '#fec15f', '#ffeec5'],
+  // SKAPS brand: deep navy → logo blue → light tints
+  purple: ['#071a28', '#0d2b3e', '#1f8fd0', '#7cc4ec', '#d6ecf8'],
+  blue: ['#0d2b3e', '#176f9d', '#2090d0', '#7cc4ec', '#dcedf7'],
+  // SKAPS green (logo)
+  lime: ['#2a470d', '#558a1b', '#7fbf2a', '#b6dc82', '#e6f2d3'],
+  cyan: ['#0d4461', '#1f8fd0', '#3aa6e2', '#c3e1f2', '#f5fafd'],
+  // gold (logo arrow)
+  orange: ['#7a4a05', '#c07d12', '#f0a92a', '#f7cf7a', '#fdf0d5'],
 }
 
 /** Isometric cube with glowing gradient faces + thin wireframe shell (hero / page-hero art). */
@@ -72,7 +75,7 @@ export function Tile({ accent = 'blue', size = 90, className = '', style }) {
     <svg viewBox="0 0 100 100" width={size} height={size} className={`art tile ${className}`} style={style} aria-hidden="true">
       <defs>
         <linearGradient id={a} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor={p[4]} /><stop offset=".5" stopColor={p[3]} /><stop offset="1" stopColor={p[1]} /></linearGradient>
-        <linearGradient id={b} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f0ff5a" /><stop offset="1" stopColor="#a2eb00" /></linearGradient>
+        <linearGradient id={b} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#b6dc82" /><stop offset="1" stopColor="#7fbf2a" /></linearGradient>
       </defs>
       <rect x="6" y="6" width="88" height="88" rx="26" fill={`url(#${a})`} />
       <rect x="6" y="6" width="88" height="88" rx="26" fill="none" stroke="#fff" strokeOpacity=".6" />
@@ -91,7 +94,7 @@ export function Iso({ accent = 'blue', className = '' }) {
       <path d="M6 12 16 6l10 6-10 6z" fill={`url(#${a})`} />
       <path d="M6 12v10l10 6V18z" fill={p[2]} />
       <path d="M26 12v10l-10 6V18z" fill={p[1]} />
-      <path d="M11 20.5 16 23.5l5-3" fill="none" stroke="#f0ff5a" strokeWidth="1.4" strokeLinecap="round" />
+      <path d="M11 20.5 16 23.5l5-3" fill="none" stroke="#b6dc82" strokeWidth="1.4" strokeLinecap="round" />
     </svg>
   )
 }
@@ -110,17 +113,17 @@ export function HubDiagram({ className = '' }) {
   ]
   return (
     <svg viewBox="0 0 420 380" className={`art ${className}`} aria-hidden="true">
-      <defs><linearGradient id="hubg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#1f3bff" /><stop offset="1" stopColor="#0e1a8a" /></linearGradient></defs>
+      <defs><linearGradient id="hubg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#2090d0" /><stop offset="1" stopColor="#0d2b3e" /></linearGradient></defs>
       {nodes.map(([n, x, y], i) => (
         <g key={n}>
-          <line x1="210" y1="190" x2={x} y2={y} stroke="#2fe6c0" strokeOpacity=".55" strokeWidth="1" strokeDasharray="3 4" />
-          <circle cx={(210 + x) / 2} cy={(190 + y) / 2} r="2.5" fill="#2fe6c0" />
-          <rect x={x - 14} y={y - 14} width="28" height="28" rx="6" fill="#0e1116" stroke="#2fe6c0" strokeOpacity=".7" />
-          <circle cx={x} cy={y} r="3" fill="#2fe6c0" />
-          <text x={x} y={y + 30} fill="#c3c3c3" fontSize="9" textAnchor="middle" fontFamily="var(--mono)">{n}</text>
+          <line x1="210" y1="190" x2={x} y2={y} stroke="#9ad64f" strokeOpacity=".55" strokeWidth="1" strokeDasharray="3 4" />
+          <circle cx={(210 + x) / 2} cy={(190 + y) / 2} r="2.5" fill="#9ad64f" />
+          <rect x={x - 14} y={y - 14} width="28" height="28" rx="6" fill="#10283a" stroke="#9ad64f" strokeOpacity=".7" />
+          <circle cx={x} cy={y} r="3" fill="#9ad64f" />
+          <text x={x} y={y + 30} fill="#b9c7d1" fontSize="9" textAnchor="middle" fontFamily="var(--mono)">{n}</text>
         </g>
       ))}
-      <path d="M210 150l36 20v40l-36 20-36-20v-40z" fill="url(#hubg)" stroke="#5cdcfc" strokeWidth="1.5" />
+      <path d="M210 150l36 20v40l-36 20-36-20v-40z" fill="url(#hubg)" stroke="#7cc4ec" strokeWidth="1.5" />
       <text x="210" y="196" fill="#fff" fontSize="20" fontWeight="800" textAnchor="middle" fontFamily="var(--font)">S</text>
     </svg>
   )
