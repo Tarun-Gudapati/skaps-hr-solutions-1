@@ -72,7 +72,6 @@
   --g-cta-card: linear-gradient(180deg, var(--purple-700) 0%, var(--purple-900) 100%);
   --g-footer: linear-gradient(180deg, var(--purple-600) 0%, var(--purple-700) 50%, var(--purple-900) 100%);
   --g-stats: linear-gradient(180deg, var(--lime-300) 0%, var(--lime-500) 60%, var(--lime-700) 100%);
-  --g-blue-hero: linear-gradient(180deg, var(--blue-600) 0%, var(--blue-400) 45%, var(--cyan-100) 100%);
   --g-sky: linear-gradient(180deg, var(--cyan-100) 0%, var(--blue-400) 100%);
   --g-form: linear-gradient(160deg, var(--lime-100) 0%, var(--cyan-100) 100%);
   --g-blue-card: linear-gradient(160deg, var(--blue-500) 0%, var(--blue-900) 100%);

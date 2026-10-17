@@ -6,7 +6,7 @@ import { Arrow, PageHero, LogoMarquee, Testimonials, CTABand, FAQ, SectionHead }
 import { services, serviceGroups } from '../data/site'
 
 export default function Services() {
-  usePolarity('inverse')
+  usePolarity('default')
   return (
     <>
       <PageHero theme="purple" eyebrow="What we do" title="Comprehensive Workforce Solutions for Growing Businesses." copy="Practical HR services that help teams move faster, operate confidently and stay focused on growth." points={['Talent: search, recruitment, staffing and interview support', 'Payroll & compliance across India and the US', 'Advisory, training, HR technology and India entry']} />

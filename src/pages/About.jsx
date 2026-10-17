@@ -8,7 +8,7 @@ import aboutTeam from '../assets/about-team.jpg'
 import worldMap from '../assets/world-map.png'
 
 export default function About() {
-  usePolarity('inverse')
+  usePolarity('default')
   return (
     <>
       <PageHero theme="purple" eyebrow="About SKAPS" title="Talent is everywhere. Great teams are built together." copy="SKAPS HR Solutions is a trusted workforce management and recruitment solutions provider helping organizations streamline hiring, payroll, compliance, and employee management across multiple industries." points={[`${YEARS} years of industry excellence`, 'Headquartered in Hyderabad, India', 'Supporting teams in India, the United States and Australia']}>

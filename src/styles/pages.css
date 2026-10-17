@@ -181,8 +181,9 @@
 
 /* ---------- Page hero (inner pages) ---------- */
 .page-hero { position: relative; margin-top: calc(-1 * var(--nav-h)); padding: calc(var(--nav-h) + 80px) 0 80px; overflow: hidden; }
-.page-hero.blue { background: var(--g-blue-hero); }
-.page-hero.purple { background: var(--g-hero); }
+/* Kept light enough at the top for navy headings, eyebrows and the default (dark) nav to stay readable. */
+.page-hero.blue { background: linear-gradient(180deg, var(--purple-400) 0%, var(--cyan-200) 50%, var(--cyan-50) 100%); }
+.page-hero.purple { background: linear-gradient(180deg, var(--cyan-300) 0%, var(--purple-200) 50%, var(--cyan-50) 100%); }
 .page-hero.lime { background: linear-gradient(180deg, var(--lime-300) 0%, var(--lime-100) 40%, var(--cyan-50) 100%); }
 .page-hero.cyan { background: linear-gradient(180deg, var(--cyan-100) 0%, var(--cyan-25) 100%); }
 .page-hero.dark { background: var(--dev-bg); color: #fff; }

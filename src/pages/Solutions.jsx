@@ -13,7 +13,7 @@ const needDetail = {
 }
 
 export default function Solutions() {
-  usePolarity('inverse')
+  usePolarity('default')
   return (
     <>
       <PageHero theme="blue" eyebrow="Tailored solutions" title="Workforce Solutions Designed Around Your Business Needs." copy="Choose the engagement model that fits how your organization scales. A practical model that keeps your teams agile, cost-efficient and compliant." points={['Contract, temporary and dedicated teams', 'Payroll outsourcing for India and the US', 'One accountable partner across regions']} />
