@@ -31,7 +31,7 @@ export function LogoMarquee({ intro }) {
     <section className="section-sm logos">
       {intro && <p className="container t-center t-small t-muted" style={{ marginBottom: 28 }}>{intro}</p>}
       <div className="marquee" aria-label="Client organizations">
-        <div className="marquee-track">{items.map(([src, name], i) => <img key={name + i} src={src} alt={i < clientLogos.length ? name : ''} loading="lazy" aria-hidden={i >= clientLogos.length} />)}</div>
+        <div className="marquee-track">{items.map(([src, name], i) => <span className="logo-tile" key={name + i} aria-hidden={i >= clientLogos.length}><img src={src} alt={i < clientLogos.length ? name : ''} loading="lazy" /></span>)}</div>
       </div>
     </section>
   )

@@ -18,7 +18,10 @@
 .float { position: absolute; display: flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, .85); backdrop-filter: blur(8px); padding: 10px 14px; border-radius: var(--r); box-shadow: 0 12px 35px rgba(20, 25, 30, .14); font-size: 11px; color: var(--text-2); }
 .float .ico { width: 30px; height: 30px; padding: 6px; border-radius: 6px; background: var(--cyan-100); color: var(--ink); }
 .float strong { display: block; color: var(--ink); font-size: 13px; }
-.f1 { left: 4%; bottom: 36%; } .f2 { right: 5%; bottom: 44%; } .f3 { right: 12%; bottom: 16%; }
+.f1 { left: 4%; bottom: 36%; } .f2 { right: 5%; bottom: 46%; } .f3 { right: 3%; bottom: 14%; }
+/* keep the floating cards clear of the centred copy on narrower desktops */
+@media (max-width: 1280px) { .f3 { bottom: 8%; } }
+@media (max-width: 1100px) { .float { display: none; } }
 .f1 .ico { background: var(--lime-200); } .f2 .ico { background: var(--purple-200); }
 @media (max-width: 900px) {
   .float { display: none; }
