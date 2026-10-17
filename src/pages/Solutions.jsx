@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import Icon from '../components/Icon'
-import { Crystal } from '../components/Art'
+import { NeedArt, needAccents } from '../components/Art'
 import { usePolarity } from '../components/Layout'
-import { Arrow, PageHero, Testimonials, CTABand, FAQ, SectionHead, DemoButton } from '../components/Sections'
+import { Arrow, PageHero, CloseLine, SectionHead, DemoButton } from '../components/Sections'
 import { needs, benefits, useCases, advantages, pains } from '../data/site'
 
 const needDetail = {
@@ -13,7 +13,7 @@ const needDetail = {
 }
 
 export default function Solutions() {
-  usePolarity('inverse')
+  usePolarity('default')
   return (
     <>
       <PageHero theme="blue" eyebrow="Tailored solutions" title="Workforce Solutions Designed Around Your Business Needs." copy="Choose the engagement model that fits how your organization scales. A practical model that keeps your teams agile, cost-efficient and compliant." points={['Contract, temporary and dedicated teams', 'Payroll outsourcing for India and the US', 'One accountable partner across regions']} />
@@ -31,7 +31,7 @@ export default function Solutions() {
                   <ul className="checklist">{needDetail[slug].map(p => <li key={p}><Icon name="check" />{p}</li>)}</ul>
                   <DemoButton className="btn btn-secondary btn-sm">Discuss {t.toLowerCase()}</DemoButton>
                 </div>
-                <div className={`media-panel need-card-art ${['purple', 'blue', 'lime', 'cyan'][i]}`}><Crystal accent={['purple', 'blue', 'lime', 'cyan'][i]} style={{ width: 120, height: 120 }} /></div>
+                <div className={`media-panel need-card-art ${needAccents[i]}`}><NeedArt kind={slug} accent={needAccents[i]} /></div>
               </article>
             ))}
           </div>
@@ -63,9 +63,7 @@ export default function Solutions() {
         </div>
       </section>
 
-      <Testimonials />
-      <CTABand />
-      <FAQ limit={4} />
+      <CloseLine>Not sure which engagement fits?</CloseLine>
     </>
   )
 }

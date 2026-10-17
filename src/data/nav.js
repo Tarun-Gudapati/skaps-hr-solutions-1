@@ -12,7 +12,7 @@ export const menus = [
     promo: { theme: 'purple', eyebrow: "What's new", title: 'SKAPS Intelligence', text: 'AI-assisted hiring, payroll anomaly detection and compliance monitoring — with people in the loop.', cta: 'Read more', to: '/ai', art: 'crystal', accent: 'purple' },
   },
   {
-    label: 'SOLUTIONS',
+    label: 'Solutions',
     groups: [
       { heading: 'By engagement model', items: needs.map(([t, d, icon, slug]) => ({ title: t, desc: d, to: `/solutions#${slug}`, icon })) },
       { heading: 'By use case', items: useCases.map(([t, d, icon, to]) => ({ title: t, desc: d, to, icon })) },

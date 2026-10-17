@@ -2,20 +2,19 @@ import { Link } from 'react-router-dom'
 import Icon from '../components/Icon'
 import { HubDiagram } from '../components/Art'
 import { usePolarity } from '../components/Layout'
-import { Arrow, PageHero, LogoMarquee, StatsStair, Testimonials, CTABand, SectionHead } from '../components/Sections'
+import { Arrow, PageHero, StatsStair, CloseLine, SectionHead } from '../components/Sections'
 import { story, storyAI, values, aiPillars, REGIONS, YEARS } from '../data/site'
 import aboutTeam from '../assets/about-team.jpg'
 import worldMap from '../assets/world-map.png'
 
 export default function About() {
-  usePolarity('inverse')
+  usePolarity('default')
   return (
     <>
       <PageHero theme="purple" eyebrow="About SKAPS" title="Talent is everywhere. Great teams are built together." copy="SKAPS HR Solutions is a trusted workforce management and recruitment solutions provider helping organizations streamline hiring, payroll, compliance, and employee management across multiple industries." points={[`${YEARS} years of industry excellence`, 'Headquartered in Hyderabad, India', 'Supporting teams in India, the United States and Australia']}>
         <Link className="btn" to="/contact">Talk to our team <Arrow /></Link>
         <Link className="btn btn-secondary" to="/how-it-works">Discover our approach</Link>
       </PageHero>
-      <LogoMarquee />
 
       <section className="section" id="story">
         <div className="container split">
@@ -72,8 +71,7 @@ export default function About() {
         </div>
       </section>
 
-      <Testimonials />
-      <CTABand />
+      <CloseLine>Want to work with this team?</CloseLine>
     </>
   )
 }

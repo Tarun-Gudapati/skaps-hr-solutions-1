@@ -15,7 +15,7 @@ import { HowItWorks, Compliance, Clients, FAQPage, Contact, NotFound } from './p
 // HashRouter keeps deep links working on GitHub Pages without server rewrites.
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <HashRouter>
+    <HashRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />

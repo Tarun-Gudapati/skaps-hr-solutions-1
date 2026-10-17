@@ -1,6 +1,8 @@
 // Original SVG artwork in the style of remote.com's 3D "glass cube / crystal" illustrations.
 // All shapes are drawn here (no third-party assets), using the brand gradient palette.
 
+import { paths as iconPaths } from './Icon'
+
 let uid = 0
 const id = (p) => `${p}-${++uid}`
 
@@ -97,6 +99,127 @@ export function Iso({ accent = 'blue', className = '' }) {
       <path d="M11 20.5 16 23.5l5-3" fill="none" stroke="#b6dc82" strokeWidth="1.4" strokeLinecap="round" />
     </svg>
   )
+}
+
+const GREEN = '#7fbf2a'
+const LINE = '#dce4e9'
+
+function Person({ x, y, r = 24, grad }) {
+  return (
+    <g>
+      <circle cx={x} cy={y} r={r} fill={`url(#${grad})`} stroke="#fff" strokeWidth="3" />
+      <circle cx={x} cy={y - r * .22} r={r * .3} fill="#fff" />
+      <path d={`M${x - r * .55} ${y + r * .62}c${r * .08}-${r * .42} ${r * .3}-${r * .6} ${r * .55}-${r * .6}s${r * .47} ${r * .18} ${r * .55} ${r * .6}`} fill="#fff" />
+    </g>
+  )
+}
+
+export const needAccents = ['purple', 'blue', 'lime', 'cyan']
+
+/**
+ * Spot illustrations for the four engagement models (Home segments, Solutions cards).
+ * kind: contract-staffing | temporary-staffing | dedicated-teams | payroll-outsourcing
+ */
+export function NeedArt({ kind, accent = 'blue', className = '', style }) {
+  const p = palettes[accent] || palettes.blue
+  const g = id('na')
+  const defs = <defs><linearGradient id={g} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor={p[3]} /><stop offset="1" stopColor={p[1]} /></linearGradient></defs>
+  const svg = children => <svg viewBox="0 0 240 180" className={`art need-art ${className}`} style={style} aria-hidden="true">{defs}{children}</svg>
+
+  if (kind === 'contract-staffing') return svg(
+    <>
+      {/* calendar with a booked project window */}
+      <rect x="24" y="30" width="156" height="124" rx="14" fill="#fff" />
+      <path d="M24 44a14 14 0 0 1 14-14h128a14 14 0 0 1 14 14v14H24z" fill={p[2]} />
+      <rect x="56" y="22" width="7" height="18" rx="3.5" fill={p[0]} /><rect x="141" y="22" width="7" height="18" rx="3.5" fill={p[0]} />
+      {[0, 1, 2].map(r => [0, 1, 2, 3, 4, 5].map(c => <circle key={`${r}${c}`} cx={44 + c * 23} cy={80 + r * 24} r="3.5" fill={LINE} />))}
+      <rect x="60" y="97" width="94" height="14" rx="7" fill={GREEN} />
+      <circle cx="67" cy="104" r="5" fill="#fff" /><circle cx="147" cy="104" r="5" fill="#fff" />
+      <Person x={186} y={130} r={30} grad={g} />
+    </>
+  )
+
+  if (kind === 'temporary-staffing') return svg(
+    <>
+      {/* demand chart with a seasonal spike, plus a clock for "short-term" */}
+      <rect x="66" y="34" width="156" height="122" rx="14" fill="#fff" />
+      {[22, 28, 40, 76, 62, 30, 24].map((h, i) => <rect key={i} x={84 + i * 19} y={140 - h} width="11" height={h} rx="3" fill={i === 3 || i === 4 ? GREEN : p[3]} />)}
+      <line x1="80" x2="208" y1="140" y2="140" stroke={LINE} strokeWidth="2" />
+      <path d="M131 56l9-9 9 9" fill="none" stroke={GREEN} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="62" cy="62" r="40" fill={`url(#${g})`} stroke="#fff" strokeWidth="4" />
+      <circle cx="62" cy="62" r="29" fill="#fff" />
+      {[0, 90, 180, 270].map(a => <line key={a} x1="62" y1="37" x2="62" y2="42" stroke={p[1]} strokeWidth="2.5" strokeLinecap="round" transform={`rotate(${a} 62 62)`} />)}
+      <path d="M62 62V46M62 62l11 7" stroke={p[0]} strokeWidth="4" strokeLinecap="round" fill="none" />
+      <circle cx="62" cy="62" r="3.5" fill={GREEN} />
+    </>
+  )
+
+  if (kind === 'dedicated-teams') return svg(
+    <>
+      {/* one long-term team connected to a shared goal */}
+      <circle cx="120" cy="92" r="66" fill="none" stroke="#fff" strokeOpacity=".75" strokeWidth="2" strokeDasharray="5 7" />
+      {[[58, 54], [182, 54], [120, 156]].map(([x, y]) => <line key={x + y} x1="120" y1="92" x2={x} y2={y} stroke="#fff" strokeWidth="3" strokeLinecap="round" />)}
+      <circle cx="120" cy="92" r="27" fill="#fff" />
+      <circle cx="120" cy="92" r="18" fill="none" stroke={p[1]} strokeWidth="3" />
+      <circle cx="120" cy="92" r="9" fill="none" stroke={p[1]} strokeWidth="3" />
+      <circle cx="120" cy="92" r="3.5" fill={p[0]} />
+      <Person x={58} y={54} grad={g} />
+      <Person x={182} y={54} grad={g} />
+      <Person x={120} y={150} grad={g} />
+      <Person x={40} y={136} r={15} grad={g} />
+      <Person x={200} y={136} r={15} grad={g} />
+    </>
+  )
+
+  return svg(
+    <>
+      {/* payslip handed off and approved */}
+      <ellipse cx="46" cy="152" rx="24" ry="8" fill="#c07d12" />
+      <rect x="22" y="138" width="48" height="14" fill="#f0a92a" /><ellipse cx="46" cy="138" rx="24" ry="8" fill="#f7cf7a" />
+      <rect x="22" y="124" width="48" height="14" fill="#f0a92a" /><ellipse cx="46" cy="124" rx="24" ry="8" fill="#f7cf7a" />
+      <g transform="rotate(-5 120 92)">
+        <rect x="64" y="20" width="118" height="146" rx="12" fill="#fff" />
+        <rect x="80" y="36" width="54" height="9" rx="4.5" fill={p[2]} />
+        <rect x="80" y="54" width="86" height="6" rx="3" fill={LINE} />
+        <rect x="80" y="66" width="64" height="6" rx="3" fill={LINE} />
+        <line x1="80" x2="166" y1="84" y2="84" stroke={LINE} strokeWidth="2" strokeDasharray="4 4" />
+        <text x="80" y="112" fontFamily="var(--font)" fontWeight="800" fontSize="16" fill={p[0]}>₹1,80,000</text>
+        <rect x="80" y="124" width="48" height="6" rx="3" fill={LINE} />
+      </g>
+      <circle cx="184" cy="134" r="27" fill={GREEN} stroke="#fff" strokeWidth="4" />
+      <path d="M172 134l8 8 16-17" fill="none" stroke="#fff" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
+    </>
+  )
+}
+
+/** Content-card illustration built around a topic icon, with an AI badge (industries, services). */
+export function SpotArt({ icon = 'spark', accent = 'blue', ai = true, className = '', style }) {
+  const p = palettes[accent] || palettes.blue
+  const g = id('sp')
+  return (
+    <svg viewBox="0 0 240 180" className={`art need-art ${className}`} style={style} aria-hidden="true">
+      <defs><linearGradient id={g} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor={p[3]} /><stop offset="1" stopColor={p[1]} /></linearGradient></defs>
+      <rect x="64" y="22" width="148" height="112" rx="14" fill="#fff" opacity=".5" transform="rotate(6 138 78)" />
+      <rect x="40" y="40" width="152" height="112" rx="14" fill="#fff" />
+      <circle cx="80" cy="80" r="24" fill={`url(#${g})`} />
+      <path d={iconPaths[icon] || iconPaths.spark} transform="translate(66 66) scale(1.17)" fill="none" stroke="#fff" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="116" y="68" width="58" height="9" rx="4.5" fill={p[2]} />
+      <rect x="116" y="84" width="42" height="6" rx="3" fill={LINE} />
+      <rect x="58" y="120" width="116" height="8" rx="4" fill={LINE} />
+      <rect x="58" y="120" width="80" height="8" rx="4" fill={GREEN} />
+      {ai && (
+        <g>
+          <circle cx="192" cy="44" r="19" fill={p[0]} stroke="#fff" strokeWidth="3" />
+          <path d={iconPaths.ai} transform="translate(183 35) scale(.75)" fill="none" stroke="#b6f06a" strokeWidth="2.4" strokeLinecap="round" />
+        </g>
+      )}
+    </svg>
+  )
+}
+
+/** Slowly drifting brand-colour gradient (Stripe-style) used behind heroes and the CTA band. */
+export function Mesh({ className = '' }) {
+  return <div className={`mesh ${className}`} aria-hidden="true"><i className="m1" /><i className="m2" /><i className="m3" /><i className="m4" /><i className="m5" /></div>
 }
 
 /** Giant wordmark used as hero artwork (remote renders its logo huge in pale cyan). */

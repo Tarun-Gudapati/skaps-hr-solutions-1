@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom'
 import Icon from '../components/Icon'
 import { Crystal, Iso } from '../components/Art'
 import LeadForm from '../components/LeadForm'
-import { usePolarity, useUI } from '../components/Layout'
-import { Arrow, PageHero, LogoMarquee, Testimonials, CTABand, FAQ, SectionHead, Steps, DemoButton, StatsStair } from '../components/Sections'
+import { usePolarity } from '../components/Layout'
+import { Arrow, PageHero, CloseLine, FAQ, SectionHead, Steps, DemoButton, StatsStair } from '../components/Sections'
 import { complianceItems, complianceBadges, testimonials, clientLogos, faqs, PHONE, PHONE_TEL, EMAIL, ADDRESS, steps } from '../data/site'
 
 export function HowItWorks() {
-  usePolarity('inverse')
+  usePolarity('default')
   return (
     <>
       <PageHero theme="blue" eyebrow="How it works" title="A Structured Approach to Workforce Management." copy="A focused process keeps every engagement transparent, efficient and aligned." points={steps.slice(0, 3).map(s => s[1])} />
@@ -24,8 +24,7 @@ export function HowItWorks() {
           </div>
         </div>
       </section>
-      <Testimonials />
-      <CTABand />
+      <CloseLine>Want to start with a conversation?</CloseLine>
     </>
   )
 }
@@ -47,15 +46,13 @@ export function Compliance() {
         </div>
       </section>
       <StatsStair />
-      <Testimonials />
-      <CTABand title={<>Operate confidently with <b>compliance built in.</b></>} />
-      <FAQ items={faqs.filter(f => /compliance|labor/i.test(f[0]))} />
+      <CloseLine>Need a compliance review?</CloseLine>
     </>
   )
 }
 
 export function Clients() {
-  usePolarity('inverse')
+  usePolarity('default')
   return (
     <>
       <PageHero theme="purple" eyebrow="Testimonials" title="What Our Clients Say." copy="Trusted By Organizations Managing Modern And Distributed Workforces Across Multiple Industries." points={['50+ clients supported', '1K+ workforce managed', '1500+ successful placements']} art="crystal" />
@@ -80,8 +77,7 @@ export function Clients() {
           </div>
         </div>
       </section>
-      <StatsStair />
-      <CTABand />
+      <CloseLine>Want a reference from a team like yours?</CloseLine>
     </>
   )
 }
@@ -92,7 +88,7 @@ export function FAQPage() {
     <>
       <PageHero theme="cyan" center eyebrow="FAQ" title="Common Questions About Our HR Services." copy="Everything you need to know about SKAPS services, engagement models and compliance." />
       <FAQ items={faqs} title="Questions we actually get asked." />
-      <CTABand />
+      <CloseLine>Still have a question?</CloseLine>
     </>
   )
 }
@@ -116,7 +112,7 @@ export function Contact() {
             <h2 className="t-h3" style={{ fontSize: 22 }}>Talk to Sales</h2>
             <strong>Book your tailored consultation</strong>
             <ol><li>Step 1: Fill in your details and we will call you back.</li><li>Step 2: Join a personalized 30-minute consultation with a SKAPS expert.</li><li>Step 3: Get answers. Understand engagement models and pricing. No obligation.</li></ol>
-            <a className="link" href="#form">Let’s talk <Arrow style={{ width: 14, height: 14 }} /></a>
+            <button type="button" className="link" onClick={() => document.getElementById('form')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>Let’s talk <Arrow style={{ width: 14, height: 14 }} /></button>
           </div>
           <div className="contact-tile reveal">
             <span className="ico-box"><Icon name="mail" /></span>
@@ -141,7 +137,6 @@ export function Contact() {
           <div className="reveal"><LeadForm /></div>
         </div>
       </section>
-      <LogoMarquee />
     </>
   )
 }

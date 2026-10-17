@@ -1,8 +1,28 @@
 import { useState } from 'react'
 import Icon from './Icon'
+import { EMAIL } from '../data/site'
 
-// Demo form — validated locally, not transmitted (same behaviour as the previous site).
-const submitLead = async () => { await new Promise(r => setTimeout(r, 650)); return { ok: true } }
+// Set VITE_LEAD_ENDPOINT (Formspree / Web3Forms URL) at build time to post leads to a form service.
+// Without it, the visitor's email app opens with the request pre-filled, so no lead is silently dropped.
+const ENDPOINT = import.meta.env.VITE_LEAD_ENDPOINT
+const ACCESS_KEY = import.meta.env.VITE_LEAD_ACCESS_KEY
+
+const FIELD_LABELS = { name: 'Name', company: 'Company', email: 'Email', phone: 'Phone', size: 'Company size', interest: 'Interested in', message: 'Message' }
+
+async function submitLead(data) {
+  const subject = `Consultation request — ${data.company} (${data.name})`
+  if (ENDPOINT) {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ ...data, subject, ...(ACCESS_KEY ? { access_key: ACCESS_KEY } : {}) }),
+    })
+    return { ok: res.ok, via: 'endpoint' }
+  }
+  const body = Object.entries(FIELD_LABELS).filter(([k]) => data[k]).map(([k, l]) => `${l}: ${data[k]}`).join('\n')
+  window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+  return { ok: true, via: 'email' }
+}
 
 function Field({ name, label, error, as = 'input', required, ...props }) {
   const El = as
@@ -15,9 +35,9 @@ function Field({ name, label, error, as = 'input', required, ...props }) {
   )
 }
 
-export default function LeadForm({ compact = false }) {
+export default function LeadForm({ compact = false, onDone }) {
   const [errors, setErrors] = useState({})
-  const [sent, setSent] = useState(false)
+  const [result, setResult] = useState(null)
   const [busy, setBusy] = useState(false)
 
   const submit = async e => {
@@ -30,14 +50,27 @@ export default function LeadForm({ compact = false }) {
     if (!/^\S+@\S+\.\S+$/.test(data.email)) next.email = 'Enter a valid email address.'
     if (!/^[+\d][\d\s()-]{7,}$/.test(data.phone)) next.phone = 'Enter a valid phone number.'
     if ((data.message || '').trim().length < 10) next.message = 'Tell us a little more about your requirements.'
+    if (!data.consent) next.consent = 'Please agree to be contacted so we can respond.'
     setErrors(next)
     if (Object.keys(next).length) return
-    setBusy(true); await submitLead(data); setBusy(false); setSent(true); form.reset()
+    delete data.consent
+    setBusy(true)
+    try {
+      const r = await submitLead(data)
+      setResult(r.ok ? r.via : 'error')
+      if (r.ok) { form.reset(); onDone?.() }
+    } catch {
+      setResult('error')
+    } finally {
+      setBusy(false)
+    }
   }
 
   return (
     <form className="form-card" onSubmit={submit} noValidate>
-      {sent && <div className="success" role="status"><Icon name="check" style={{ width: 18, height: 18 }} /><div><strong>Consultation request captured</strong><span>This review form does not send or store data yet.</span></div></div>}
+      {result === 'endpoint' && <div className="success" role="status"><Icon name="check" style={{ width: 18, height: 18 }} /><div><strong>Request received</strong><span>A SKAPS specialist will contact you within one business day.</span></div></div>}
+      {result === 'email' && <div className="success" role="status"><Icon name="mail" style={{ width: 18, height: 18 }} /><div><strong>Almost done — press send</strong><span>Your email app opened with your details filled in. If it didn’t, write to <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</span></div></div>}
+      {result === 'error' && <div className="success error-box" role="alert"><Icon name="alert" style={{ width: 18, height: 18 }} /><div><strong>Something went wrong</strong><span>Please try again, or email us at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</span></div></div>}
       <div className="form-row">
         <Field name="name" label="Full name" placeholder="Your name" error={errors.name} required />
         <Field name="company" label="Company name" placeholder="Your organization name" error={errors.company} required />
@@ -53,9 +86,10 @@ export default function LeadForm({ compact = false }) {
         </div>
       )}
       <Field name="message" as="textarea" label="How can we help you?" placeholder="Tell us about your requirements" error={errors.message} required />
-      <label className="form-consent"><input type="checkbox" name="consent" /><span>By submitting this form, you agree to receive communications from SKAPS about our HR, payroll and workforce solutions. You can opt out at any time.</span></label>
-      <button className="btn btn-block" disabled={busy}>{busy ? 'Capturing request…' : 'Send Message'} <Icon name="arrow" className="arrow" style={{ width: 16, height: 16 }} /></button>
-      <p className="form-note">Demo form — details are validated locally and are not transmitted.</p>
+      <label className="form-consent"><input type="checkbox" name="consent" aria-invalid={!!errors.consent} /><span>By submitting this form, you agree to receive communications from SKAPS about our HR, payroll and workforce solutions. You can opt out at any time.</span></label>
+      {errors.consent && <small className="error" style={{ marginTop: -8 }}>{errors.consent}</small>}
+      <button className="btn btn-block" disabled={busy}>{busy ? 'Sending…' : 'Send Message'} <Icon name="arrow" className="arrow" style={{ width: 16, height: 16 }} /></button>
+      <p className="form-note">We use your details only to respond to this request. No spam, ever.</p>
     </form>
   )
 }

@@ -101,7 +101,7 @@ export default function Header({ polarity }) {
           {topLinks.map(l => <li className="nav-item" key={l.to} onMouseEnter={() => enter(null)}><Link to={l.to}>{l.label}{l.badge && <span className="nav-badge">{l.badge}</span>}</Link></li>)}
         </ul>
         <div className="nav-right" onMouseEnter={() => enter(null)}>
-          <a className="nav-phone" href={`tel:${PHONE_TEL}`}><Icon name="phone" />{PHONE}</a>
+          <a className="nav-phone" href={`tel:${PHONE_TEL}`} aria-label={`Call ${PHONE}`} title={PHONE}><Icon name="phone" /><span>{PHONE}</span></a>
           <button type="button" className="btn btn-primary-nav" onClick={openDemo}>Schedule a consultation <Icon name="arrow" className="arrow" style={{ width: 16, height: 16 }} /></button>
         </div>
         <button type="button" className="burger" aria-label="Open menu" aria-expanded={drawer} onClick={() => setDrawer(true)}><Icon name="menu" /></button>
@@ -124,7 +124,7 @@ export default function Header({ polarity }) {
       )}
 
       {drawer && (
-        <div className="drawer" role="dialog" aria-modal="true" aria-label="Site menu">
+        <div className="drawer" role="dialog" aria-modal="true" aria-label="Site menu" onClick={e => { if (e.target.closest('a')) setDrawer(false) }}>
           <div className="drawer-top">
             <Brand />
             <button type="button" className="drawer-close" aria-label="Close menu" onClick={() => setDrawer(false)}><Icon name="close" /></button>

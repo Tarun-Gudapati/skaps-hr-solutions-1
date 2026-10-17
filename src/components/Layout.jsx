@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 import DemoModal from './DemoModal'
+import { getService } from '../data/site'
 
 const UI = createContext({ openDemo: () => {}, setPolarity: () => {} })
 export const useUI = () => useContext(UI)
@@ -13,6 +14,32 @@ export function usePolarity(p = 'inverse') {
   useLayoutEffect(() => { setPolarity(p); return () => setPolarity('default') }, [p, setPolarity])
 }
 
+const SUFFIX = 'SKAPS HR SOLUTIONS'
+const titles = {
+  '/': `${SUFFIX} | AI-Powered HR, Payroll & Staffing`,
+  '/services': 'HR, Payroll & Staffing Services',
+  '/solutions': 'Workforce Solutions & Engagement Models',
+  '/industries': 'Industries We Serve',
+  '/about': 'Our Story',
+  '/ai': 'SKAPS Intelligence — AI for Hiring, Payroll & Compliance',
+  '/how-it-works': 'How It Works',
+  '/compliance': 'Compliance',
+  '/clients': 'Client Stories',
+  '/faq': 'FAQ',
+  '/contact': 'Contact Us',
+}
+
+function TitleManager() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    if (pathname === '/') { document.title = titles['/']; return }
+    const service = pathname.startsWith('/services/') && getService(pathname.split('/')[2])
+    const page = service ? service.title : titles[pathname] || 'Page not found'
+    document.title = `${page} | ${SUFFIX}`
+  }, [pathname])
+  return null
+}
+
 function ScrollManager() {
   const { pathname, hash } = useLocation()
   useEffect(() => {
@@ -20,7 +47,7 @@ function ScrollManager() {
       const el = document.getElementById(hash.slice(1))
       if (el) { setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60); return }
     }
-    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' })
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
   }, [pathname, hash])
   // reveal-on-scroll
   useEffect(() => {
@@ -46,6 +73,7 @@ export default function Layout() {
   return (
     <UI.Provider value={{ openDemo, setPolarity }}>
       <ScrollManager />
+      <TitleManager />
       <Header polarity={polarity} />
       <main id="main"><Outlet /></main>
       <Footer />
