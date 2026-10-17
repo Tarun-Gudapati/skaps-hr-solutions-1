@@ -1,5 +1,6 @@
 node_modules
 dist
+dist-root
 # design research (remote.com screenshots/map) - not part of the site
 reference/
 .DS_Store

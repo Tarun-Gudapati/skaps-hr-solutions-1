@@ -1,0 +1,33 @@
+name: Build for MonsterASP.NET
+# Builds the site for a domain root (base "/") and publishes the ready-to-serve
+# output to the "monsterasp" branch. In the MonsterASP control panel use
+# Websites -> Git deploy -> Type: Static, Branch: monsterasp -> Pull latest -> Publish.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: monsterasp
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build:root
+      - name: Publish built site to the monsterasp branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: monsterasp
+          publish_dir: ./dist-root
+          force_orphan: true
+          enable_jekyll: true
+          commit_message: "Build for MonsterASP from ${{ github.sha }}"
