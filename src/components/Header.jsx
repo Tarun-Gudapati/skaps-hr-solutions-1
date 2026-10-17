@@ -136,6 +136,7 @@ export default function Header({ polarity }) {
         </div>
       )}
 
+      {drawer && <div className="drawer-backdrop" onClick={() => setDrawer(false)} aria-hidden="true" />}
       {drawer && (
         <div className="drawer" role="dialog" aria-modal="true" aria-label="Site menu">
           <div className="drawer-top">

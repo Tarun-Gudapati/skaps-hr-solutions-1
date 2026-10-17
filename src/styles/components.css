@@ -138,20 +138,31 @@
 .mega-promo .promo-list a .ico { width: 14px; height: 14px; }
 
 /* Mobile drawer */
-.drawer { pointer-events: auto; position: fixed; inset: 0; z-index: 70; background: #fff; color: var(--ink); display: flex; flex-direction: column; padding: 14px 20px 20px; animation: megaIn .2s var(--ease-enter); overflow: hidden; }
-.drawer-top { display: flex; justify-content: space-between; align-items: center; min-height: 48px; }
-.drawer-top .brand img { height: 44px; }
-.drawer-close { width: 44px; height: 44px; display: grid; place-items: center; }
-.drawer-body { flex: 1; overflow-y: auto; padding: 16px 0; }
-.drawer-root > li > button, .drawer-root > li > a { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 18px 0; font-size: 32px; font-weight: 700; letter-spacing: -.02em; text-align: left; }
-.drawer-root .ico { width: 20px; height: 20px; }
-.drawer-sub-head { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 700; padding: 8px 0 20px; }
-.drawer-sub .eyebrow { display: block; margin: 16px 0 10px; }
-.drawer-sub .mega-item { border: 1px solid var(--stroke-soft); margin: 0 0 10px; padding: 16px; }
-.drawer-sub .mega-item.plain { border: 0; padding: 10px 0; margin: 0; }
-.drawer-foot { display: grid; gap: 12px; padding-top: 16px; border-top: 1px solid var(--grey-200); }
-.drawer-foot .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.drawer-foot .tag { justify-content: space-between; height: 56px; border-radius: var(--r); font-size: 16px; }
+/* A compact sheet that drops down from the top over a dimmed page - not a full-screen takeover. */
+.drawer-backdrop { pointer-events: auto; position: fixed; inset: 0; z-index: 69; background: rgba(13, 43, 62, .4); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); animation: fadeIn .2s var(--ease-enter); }
+.drawer { pointer-events: auto; position: fixed; z-index: 70; top: 10px; left: 10px; right: 10px; max-height: calc(100dvh - 20px); background: #fff; color: var(--ink); border-radius: 20px; box-shadow: 0 30px 60px -20px rgba(7, 26, 40, .45); display: flex; flex-direction: column; padding: 10px 16px 16px; animation: megaIn .22s var(--ease-enter); overflow: hidden; }
+.drawer-top { display: flex; justify-content: space-between; align-items: center; min-height: 44px; }
+.drawer-top .brand img { height: 36px; }
+.drawer-top .brand-text span { font-size: 15px; }
+.drawer-close { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: var(--grey-50); }
+.drawer-close .ico { width: 18px; height: 18px; }
+.drawer-body { flex: 1; min-height: 0; overflow-y: auto; padding: 8px 0 4px; }
+.drawer-root > li + li { border-top: 1px solid var(--grey-100); }
+.drawer-root > li > button, .drawer-root > li > a { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 13px 4px; font-size: 17px; font-weight: 600; letter-spacing: -.01em; text-align: left; border-radius: 10px; }
+.drawer-root > li > button:active, .drawer-root > li > a:active { background: var(--grey-50); }
+.drawer-root .ico { width: 16px; height: 16px; color: var(--text-2); }
+.drawer .nav-badge { margin-left: auto; margin-right: 8px; }
+.drawer-sub-head { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; padding: 6px 0 12px; }
+.drawer-sub-head .ico { width: 18px; height: 18px; }
+.drawer-sub .eyebrow { display: block; margin: 12px 0 8px; }
+.drawer-sub .mega-item { border: 1px solid var(--stroke-soft); margin: 0 0 8px; padding: 11px 12px; }
+.drawer-sub .mega-item strong { font-size: 14px; }
+.drawer-sub .mega-item .desc { font-size: 12px; }
+.drawer-sub .mega-item.plain { border: 0; padding: 8px 0; margin: 0; }
+.drawer-foot { display: grid; gap: 10px; padding-top: 12px; border-top: 1px solid var(--grey-200); }
+.drawer-foot .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.drawer-foot .row .btn { height: 46px; padding-block: 0; }
+.drawer-foot .tag { justify-content: space-between; height: 46px; border-radius: 12px; font-size: 15px; }
 
 @media (max-width: 1023px) {
   .nav-list, .nav-right { display: none; }
