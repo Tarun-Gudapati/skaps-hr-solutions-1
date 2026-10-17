@@ -30,7 +30,7 @@ function Highlight({ text, word }) {
 export default function ServicePage() {
   const { slug } = useParams()
   const s = getService(slug)
-  usePolarity(s && s.accent === 'blue' || s?.accent === 'purple' ? 'inverse' : 'default')
+  usePolarity('default')
   if (!s) return <Navigate to="/services" replace />
   const [statement, word] = statementFor[s.slug] || ['Built for growing businesses.', 'growing']
 
@@ -58,7 +58,6 @@ export default function ServicePage() {
               <article className="feature-card reveal" key={p}>
                 <div className={`media-panel ${['blue', 'lime', 'cyan', 'purple'][i % 4]}`}><Crystal accent={['blue', 'lime', 'cyan', 'purple'][i % 4]} style={{ width: 110, height: 110 }} /></div>
                 <h3 className="t-h3">{p}</h3>
-                <p className="t-small t-muted">{s.detail.split('. ')[0]}.</p>
               </article>
             ))}
           </div>
@@ -69,7 +68,7 @@ export default function ServicePage() {
         <div className="container">
           <SectionHead title={`One partner for ${s.title.toLowerCase().replace(' (india)', '')}, compliance and payroll.`} copy="SKAPS combines deep local expertise with a structured, confidential process so your team can move quickly and confidently." />
           <ul className="checklist inline reveal" style={{ marginBottom: 48 }}>{complianceBadges.map(b => <li key={b}><Icon name="check" />{b}</li>)}</ul>
-          <div className="stat-row reveal">{stats.slice(0, 4).map(([n, l]) => <div key={l}><strong className="t-stat">{n}</strong><p>{n} {l}</p></div>)}</div>
+          <div className="stat-row reveal">{stats.slice(0, 4).map(([n, l]) => <div key={l}><strong className="t-stat">{n}</strong><p>{l}</p></div>)}</div>
           <div className="t-center" style={{ marginTop: 40 }}><DemoButton className="btn btn-secondary" /></div>
         </div>
       </section>

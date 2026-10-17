@@ -45,7 +45,7 @@ export function StatsStair({ title = 'A single partner for people, payroll and c
         <ul className="checklist inline reveal" style={{ marginBottom: 48 }}>{badges.map(b => <li key={b}><Icon name="check" />{b}</li>)}</ul>
         <div className="stair-wrap reveal">
           <div className="stair">
-            {stats.map(([n, l]) => <div className="step" key={l}><strong className="t-stat">{n}</strong><p>{n} {l}</p></div>)}
+            {stats.map(([n, l]) => <div className="step" key={l}><strong className="t-stat">{n}</strong><p>{l}</p></div>)}
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@ export function Testimonials({ title = 'Companies across industries are building
                 <div className="brand-line"><span className="mark" aria-hidden="true">{r.split(', ')[1].charAt(0)}</span>{r.split(', ')[1]}</div>
                 <blockquote>“{q}”</blockquote>
                 <figcaption className="who">{n}<small>{r.split(', ')[0]}</small></figcaption>
-                <div className="metric"><strong>{m}</strong><span>{m} {ml}</span></div>
+                <div className="metric"><strong>{m}</strong><span>{ml}</span></div>
               </figure>
             ))}
           </div>

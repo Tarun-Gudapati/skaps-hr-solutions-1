@@ -8,7 +8,7 @@ import card3 from '../assets/cards/card-3.svg'
 import card4 from '../assets/cards/card-4.svg'
 import { usePolarity, useUI } from '../components/Layout'
 import { Arrow, DemoButton, LogoMarquee, StatsStair, Testimonials, FAQ, CTABand, SectionHead, Steps } from '../components/Sections'
-import { services, pains, advantages, industries, needs, benefits, aiPillars, REGIONS, YEARS } from '../data/site'
+import { services, pains, advantages, industries, needs, benefits, aiPillars, aiStats, REGIONS, YEARS } from '../data/site'
 import worldMap from '../assets/world-map.png'
 
 // AI card leads — it is the headline capability of the redesigned site.
@@ -38,7 +38,7 @@ function Hero() {
         </div>
         <span className="eyebrow hero-eyebrow">Trusted HR Partner · {YEARS} years of industry excellence</span>
         <div className="hero-floats" aria-hidden="true">
-          <div className="float f1"><Icon name="ai" /><span>AI candidate match<strong>94% role fit</strong></span></div>
+          <div className="float f1"><Icon name="ai" /><span>AI candidate match<strong>Shortlist ready for review</strong></span></div>
           <div className="float f2"><Icon name="alert" /><span>Payroll anomaly caught<strong>Before cycle closed</strong></span></div>
           <div className="float f3"><Icon name="shield" /><span>Compliance watchtower<strong>PF filing due · tracked</strong></span></div>
         </div>
@@ -230,9 +230,7 @@ function AIBlock() {
           <h2 className="t-h2 reveal" style={{ color: '#fff', marginTop: 12 }}>Workforce intelligence <span className="hl-blue">powered by AI.</span></h2>
           <p className="reveal" style={{ color: 'var(--on-dark-3)', marginTop: 16, maxWidth: 480 }}>Our in-house AI layer works alongside SKAPS consultants to match candidates, catch payroll anomalies before a cycle closes and track statutory changes across India, the US and Australia — with every recommendation reviewed by a human expert.</p>
           <div className="ai-stats reveal">
-            <div><strong>&lt;30 mins</strong><span>to a role-ready shortlist</span></div>
-            <div><strong>99.9%</strong><span>payroll accuracy with anomaly checks</span></div>
-            <div><strong>1</strong><span>human expert reviews every recommendation</span></div>
+            {aiStats.slice(0, 3).map(([n, l]) => <div key={l}><strong>{n}</strong><span>{l}</span></div>)}
           </div>
           <div className="actions" style={{ marginTop: 28 }}>
             <Link className="btn btn-inverse" to="/ai">Explore SKAPS Intelligence <Arrow /></Link>
