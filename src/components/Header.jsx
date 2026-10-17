@@ -87,9 +87,10 @@ export default function Header({ polarity }) {
     return () => { window.removeEventListener('scroll', dismiss); window.removeEventListener('wheel', dismiss); window.removeEventListener('touchmove', dismiss) }
   }, [open])
 
-  // Hover preview: open while over the button, close (after a tiny grace period so moving between
-  // adjacent buttons doesn't flicker) as soon as the pointer leaves the button - even onto the panel.
+  // Hover preview: open while over the button or the panel; close after a short grace period so the
+  // pointer can travel from the button down into the panel without it disappearing.
   const enter = label => { clearTimeout(closeTimer.current); setHover(label) }
+  const keep = () => clearTimeout(closeTimer.current)
   const leave = () => { clearTimeout(closeTimer.current); closeTimer.current = setTimeout(() => setHover(null), 120) }
   // Click: pin this menu open (click again to close). Pinning one menu replaces any other pinned menu.
   const toggle = label => { clearTimeout(closeTimer.current); setHover(null); setPinned(p => (p === label ? null : label)) }
@@ -120,10 +121,8 @@ export default function Header({ polarity }) {
 
       {isPinned && <div className="mega-backdrop" onClick={close} aria-hidden="true" />}
       {active && (
-        <div className={`mega${isPinned ? ' is-pinned' : ' is-preview'}`} role="region" aria-label={`${active.label} menu`}>
-          {isPinned
-            ? <button type="button" className="mega-close" aria-label="Close menu" onClick={close}><Icon name="close" /></button>
-            : <span className="mega-hint">Click <strong>{active.label}</strong> to keep this menu open</span>}
+        <div className={`mega${isPinned ? ' is-pinned' : ' is-preview'}`} role="region" aria-label={`${active.label} menu`} onMouseEnter={isPinned ? undefined : keep} onMouseLeave={isPinned ? undefined : leave}>
+          {isPinned && <button type="button" className="mega-close" aria-label="Close menu" onClick={close}><Icon name="close" /></button>}
           <div className="mega-groups">
             {active.groups.map(g => (
               <div className="mega-group" key={g.heading}>
