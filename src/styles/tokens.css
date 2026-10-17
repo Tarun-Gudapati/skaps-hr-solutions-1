@@ -1,0 +1,73 @@
+/* Design tokens — mirrored from remote.com "Nova" design system (see reference/remote-com/SITE-MAP.md) */
+:root {
+  /* Brand neutrals */
+  --ink: #14191e;
+  --ink-hover: #222e39;
+  --ink-pressed: #364452;
+  --text: #14191e;
+  --text-2: #595959;
+  --text-3: #777;
+  --on-dark: #fafafa;
+  --on-dark-2: #e2e2e2;
+  --on-dark-3: #afafaf;
+
+  --grey-25: #fafafa; --grey-50: #f6f6f6; --grey-100: #efefef; --grey-200: #e2e2e2; --grey-300: #ccc;
+  --grey-400: #afafaf; --grey-500: #959595; --grey-600: #777; --grey-700: #595959; --grey-800: #424242; --grey-900: #2e2e2e;
+
+  /* Brand accents */
+  --purple-950: #2e005c; --purple-900: #500087; --purple-700: #890fcb; --purple-600: #b919ff; --purple-500: #ca69ff; --purple-400: #d893ff; --purple-200: #f2deff; --purple-100: #f7eaff;
+  --cyan-25: #e7feff; --cyan-50: #d3feff; --cyan-100: #aefcff; --cyan-200: #8ff0fd; --cyan-300: #5cdcfc;
+  --blue-400: #0bf; --blue-500: #09f; --blue-600: #057aff; --blue-700: #0056b5; --blue-800: #00408a; --blue-900: #00285a;
+  --lime-25: #f8ffc5; --lime-50: #f2ff80; --lime-100: #f0ff5a; --lime-200: #c1f22a; --lime-300: #a2eb00; --lime-400: #86c000; --lime-500: #73a300; --lime-600: #5d8200; --lime-700: #466100; --lime-800: #2c3e00;
+  --teal-200: #a5eef3; --teal-400: #33c0c8;
+  --orange-100: #ffeec5; --orange-300: #fec15f;
+  --dev-bg: #040506; --dev-panel: #0e1116; --dev-blue: #1f3bff; --dev-cyan: #2fe6c0;
+
+  /* Surfaces */
+  --surface: #fff;
+  --surface-frost: rgba(255, 255, 255, .3);
+  --surface-frost-strong: rgba(255, 255, 255, .6);
+  --stroke: #ccc;
+  --stroke-soft: rgba(20, 25, 30, .14);
+
+  /* Shape */
+  --r-2: 2px; --r: 6px; --r-16: 16px; --r-32: 32px; --r-full: 9999px;
+  --inset: 10px;
+
+  /* Type */
+  --font: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Spacing */
+  --s-4: 4px; --s-8: 8px; --s-12: 12px; --s-16: 16px; --s-20: 20px; --s-24: 24px; --s-32: 32px; --s-40: 40px; --s-48: 48px; --s-56: 56px; --s-64: 64px; --s-80: 80px; --s-96: 96px; --s-112: 112px; --s-128: 128px;
+
+  /* Motion */
+  --d-hover-in: .3s; --d-hover-out: .25s; --d-press: .15s;
+  --ease-enter: cubic-bezier(0, 0, .2, 1); --ease-exit: cubic-bezier(.4, 0, 1, 1); --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  --arrow-travel: 4px;
+
+  /* Layout */
+  --container: 1156px;
+  --container-text: 644px;
+  --gutter: 24px;
+  --nav-h: 80px;
+
+  /* Section gradients (measured on remote.com) */
+  --g-hero: linear-gradient(180deg, var(--purple-900) 0%, var(--purple-600) 33%, var(--cyan-100) 75%);
+  --g-cards: linear-gradient(180deg, var(--cyan-100) 0%, var(--cyan-50) 100%);
+  --g-statement: linear-gradient(180deg, var(--cyan-50) 0%, #fff 100%);
+  --g-testimonials: linear-gradient(180deg, #fff 0%, var(--cyan-50) 100%);
+  --g-learn: linear-gradient(180deg, var(--cyan-50) 0%, var(--cyan-100) 60%, var(--purple-400) 100%);
+  --g-cta: linear-gradient(180deg, var(--purple-400) 0%, var(--purple-600) 100%);
+  --g-cta-card: linear-gradient(180deg, var(--purple-700) 0%, var(--purple-900) 100%);
+  --g-footer: linear-gradient(180deg, var(--purple-600) 0%, var(--purple-600) 50%, var(--purple-900) 100%);
+  --g-stats: linear-gradient(180deg, var(--lime-300) 0%, var(--lime-500) 60%, var(--lime-700) 100%);
+  --g-blue-hero: linear-gradient(180deg, var(--blue-600) 0%, var(--blue-400) 40%, var(--cyan-100) 100%);
+  --g-sky: linear-gradient(180deg, var(--cyan-100) 0%, var(--blue-400) 100%);
+  --g-form: linear-gradient(160deg, var(--lime-200) 0%, var(--cyan-100) 100%);
+  --g-blue-card: linear-gradient(160deg, var(--blue-600) 0%, var(--blue-900) 100%);
+  --g-lime-card: linear-gradient(160deg, var(--lime-100) 0%, var(--lime-300) 100%);
+  --g-lilac-card: linear-gradient(160deg, var(--purple-200) 0%, var(--purple-500) 100%);
+  --g-cyan-card: linear-gradient(160deg, var(--cyan-25) 0%, var(--cyan-200) 100%);
+  --g-orange-card: linear-gradient(160deg, var(--orange-100) 0%, var(--orange-300) 100%);
+}

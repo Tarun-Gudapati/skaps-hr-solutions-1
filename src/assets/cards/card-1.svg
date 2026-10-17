@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" fill="none">
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e3ff"/><stop offset=".45" stop-color="#c84dff"/><stop offset="1" stop-color="#4b0588"/></linearGradient>
+    <linearGradient id="b" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2e0056"/><stop offset="1" stop-color="#b919ff"/></linearGradient>
+    <linearGradient id="c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#edc9ff"/><stop offset="1" stop-color="#8a16d1"/></linearGradient>
+    <linearGradient id="d" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a23ae8"/><stop offset="1" stop-color="#5a0a9c"/></linearGradient>
+  </defs>
+  <!-- flat slab lying on the ground -->
+  <path d="M28 152 158 112 262 148 136 192Z" fill="url(#c)"/>
+  <path d="M28 152 136 192v14L28 166Z" fill="#4b0588" opacity=".9"/>
+  <path d="M136 192 262 148v14L136 206Z" fill="url(#d)"/>
+  <!-- thin tilted plate -->
+  <path d="M60 128 128 84 182 108 118 150Z" fill="url(#a)" opacity=".85"/>
+  <path d="M60 128 118 150v10L60 138Z" fill="#3d006b" opacity=".8"/>
+  <!-- tall standing shard -->
+  <path d="M196 36 266 14 304 134 236 162Z" fill="url(#a)"/>
+  <path d="M196 36 236 162 220 172 180 50Z" fill="url(#b)"/>
+  <path d="M266 14 304 134 316 128 278 10Z" fill="#edc9ff" opacity=".75"/>
+  <!-- wireframe edges -->
+  <g stroke="#fff" stroke-opacity=".8" stroke-width="1" stroke-linejoin="round">
+    <path d="M28 152 158 112 262 148 136 192Z"/>
+    <path d="M60 128 128 84 182 108 118 150Z"/>
+    <path d="M196 36 266 14 304 134 236 162ZM196 36 180 50 220 172 236 162M266 14 278 10 316 128 304 134"/>
+  </g>
+  <g stroke="#fff" stroke-opacity=".3" stroke-width="1"><path d="M0 170 80 200M210 96 320 64M150 20 190 8"/></g>
+</svg>

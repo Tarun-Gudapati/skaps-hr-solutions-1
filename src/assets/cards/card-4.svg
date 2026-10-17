@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" fill="none">
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e3ff"/><stop offset=".45" stop-color="#c84dff"/><stop offset="1" stop-color="#4b0588"/></linearGradient>
+    <linearGradient id="b" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2e0056"/><stop offset="1" stop-color="#b919ff"/></linearGradient>
+    <linearGradient id="c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#edc9ff"/><stop offset="1" stop-color="#8a16d1"/></linearGradient>
+  </defs>
+  <!-- triangular prism loop -->
+  <path d="M56 196 172 26 300 196h-50L172 96 106 196Z" fill="url(#a)"/>
+  <path d="M172 26 196 24 324 194 300 196Z" fill="url(#b)"/>
+  <path d="M172 96 196 94 274 196h-24Z" fill="#4b0588" opacity=".9"/>
+  <path d="M56 196 172 26 196 24 80 196Z" fill="url(#c)" opacity=".85"/>
+  <path d="M106 196 172 96 196 94 130 196Z" fill="#8a16d1" opacity=".8"/>
+  <!-- small floating cube -->
+  <path d="M24 136 50 124 76 136 50 148Z" fill="#edc9ff"/>
+  <path d="M24 136 50 148v28L24 164Z" fill="#8a16d1"/>
+  <path d="M76 136 50 148v28l26-12Z" fill="#4b0588"/>
+  <!-- wireframe -->
+  <g stroke="#fff" stroke-opacity=".8" stroke-width="1" stroke-linejoin="round">
+    <path d="M56 196 172 26 300 196h-50L172 96 106 196ZM172 26 196 24 324 194 300 196M172 96 196 94 274 196M56 196 80 196 196 24M106 196 130 196 196 94"/>
+    <path d="M24 136 50 124 76 136 50 148ZM24 136v28l26 12 26-12v-28M50 148v28"/>
+  </g>
+  <g stroke="#fff" stroke-opacity=".3" stroke-width="1"><path d="M0 100 30 86M230 40 320 20"/></g>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" fill="none">
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e3ff"/><stop offset=".45" stop-color="#c84dff"/><stop offset="1" stop-color="#4b0588"/></linearGradient>
+    <linearGradient id="b" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2e0056"/><stop offset="1" stop-color="#b919ff"/></linearGradient>
+    <linearGradient id="c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#edc9ff"/><stop offset="1" stop-color="#8a16d1"/></linearGradient>
+  </defs>
+  <!-- fan of crystal panels radiating from a hub -->
+  <path d="M160 188 44 118 78 90 160 150Z" fill="url(#b)"/>
+  <path d="M160 188 92 56 134 42 166 146Z" fill="url(#a)"/>
+  <path d="M160 188 196 38 240 50 186 150Z" fill="url(#c)"/>
+  <path d="M160 188 268 80 292 112 198 166Z" fill="url(#b)"/>
+  <path d="M160 188 306 142 312 176 206 196Z" fill="url(#a)" opacity=".92"/>
+  <path d="M160 188 28 162 30 130 150 172Z" fill="url(#c)" opacity=".85"/>
+  <!-- panel thickness -->
+  <path d="M92 56 134 42 140 52 98 66Z" fill="#edc9ff" opacity=".7"/>
+  <path d="M196 38 240 50 236 60 192 48Z" fill="#edc9ff" opacity=".7"/>
+  <path d="M268 80 292 112 284 118 260 86Z" fill="#3d006b" opacity=".8"/>
+  <!-- hub -->
+  <ellipse cx="160" cy="190" rx="34" ry="14" fill="#2e0056"/>
+  <ellipse cx="160" cy="184" rx="34" ry="14" fill="url(#c)"/>
+  <!-- wireframe -->
+  <g stroke="#fff" stroke-opacity=".8" stroke-width="1" stroke-linejoin="round">
+    <path d="M160 188 44 118 78 90 160 150ZM160 188 92 56 134 42 166 146ZM160 188 196 38 240 50 186 150ZM160 188 268 80 292 112 198 166ZM160 188 306 142 312 176 206 196ZM160 188 28 162 30 130 150 172Z"/>
+    <ellipse cx="160" cy="184" rx="34" ry="14"/>
+  </g>
+  <g stroke="#fff" stroke-opacity=".3" stroke-width="1"><path d="M0 184 40 200M250 20 320 10"/></g>
+</svg>

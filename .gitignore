@@ -1,0 +1,7 @@
+node_modules
+dist
+# design research (remote.com screenshots/map) - not part of the site
+reference/
+.DS_Store
+work/node
+work/node.tar.gz
