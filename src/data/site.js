@@ -244,6 +244,7 @@ export const values = [
   ['Partnership', 'Enduring relationships and measurable positive impact.'],
 ]
 
-export const socials = [['LinkedIn', 'linkedin', '#'], ['Facebook', 'facebook', '#'], ['Instagram', 'instagram', '#'], ['Twitter', 'twitter', '#']]
+// Profiles without a URL are hidden in the footer; add the real link to show the icon.
+export const socials = [['LinkedIn', 'linkedin', ''], ['Facebook', 'facebook', ''], ['Instagram', 'instagram', ''], ['Twitter', 'twitter', '']]
 
 export const footerIntro = 'SKAPS HR Solutions is a trusted workforce management and recruitment solutions provider helping organizations streamline hiring, payroll, compliance, and employee management across multiple industries.'

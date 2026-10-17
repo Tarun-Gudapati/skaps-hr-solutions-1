@@ -7,7 +7,7 @@ import { Arrow, PageHero, LogoMarquee, Testimonials, CTABand, FAQ, SectionHead, 
 import { complianceItems, complianceBadges, testimonials, clientLogos, faqs, PHONE, PHONE_TEL, EMAIL, ADDRESS, steps } from '../data/site'
 
 export function HowItWorks() {
-  usePolarity('inverse')
+  usePolarity('default')
   return (
     <>
       <PageHero theme="blue" eyebrow="How it works" title="A Structured Approach to Workforce Management." copy="A focused process keeps every engagement transparent, efficient and aligned." points={steps.slice(0, 3).map(s => s[1])} />
@@ -55,7 +55,7 @@ export function Compliance() {
 }
 
 export function Clients() {
-  usePolarity('inverse')
+  usePolarity('default')
   return (
     <>
       <PageHero theme="purple" eyebrow="Testimonials" title="What Our Clients Say." copy="Trusted By Organizations Managing Modern And Distributed Workforces Across Multiple Industries." points={['50+ clients supported', '1K+ workforce managed', '1500+ successful placements']} art="crystal" />
@@ -116,7 +116,7 @@ export function Contact() {
             <h2 className="t-h3" style={{ fontSize: 22 }}>Talk to Sales</h2>
             <strong>Book your tailored consultation</strong>
             <ol><li>Step 1: Fill in your details and we will call you back.</li><li>Step 2: Join a personalized 30-minute consultation with a SKAPS expert.</li><li>Step 3: Get answers. Understand engagement models and pricing. No obligation.</li></ol>
-            <a className="link" href="#form">Let’s talk <Arrow style={{ width: 14, height: 14 }} /></a>
+            <Link className="link" to="/contact#form">Let’s talk <Arrow style={{ width: 14, height: 14 }} /></Link>
           </div>
           <div className="contact-tile reveal">
             <span className="ico-box"><Icon name="mail" /></span>

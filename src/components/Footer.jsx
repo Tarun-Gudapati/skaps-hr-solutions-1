@@ -13,7 +13,7 @@ export default function Footer({ footnote }) {
             <div className="footer-brand">
               <Brand />
               <p>{footerIntro}</p>
-              <div className="socials">{socials.map(([l, i, href]) => <a key={i} href={href} aria-label={`${BRAND_FULL} on ${l}`}><Icon name={i} /></a>)}</div>
+              {socials.some(([, , href]) => href) && <div className="socials">{socials.filter(([, , href]) => href).map(([l, i, href]) => <a key={i} href={href} target="_blank" rel="noopener noreferrer" aria-label={`${BRAND_FULL} on ${l}`}><Icon name={i} /></a>)}</div>}
             </div>
             <div className="footer-col">
               <h4>Services</h4>
