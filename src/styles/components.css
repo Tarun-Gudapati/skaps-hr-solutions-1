@@ -97,13 +97,19 @@
 .burger .ico { width: 26px; height: 26px; }
 
 /* Mega menu */
-.mega { pointer-events: auto; position: absolute; left: var(--inset); right: var(--inset); top: calc(var(--inset) + 70px); background: #fff; color: var(--ink); border-radius: 0 0 var(--r) var(--r); box-shadow: 0 30px 60px -20px rgba(20, 25, 30, .35); display: grid; grid-template-columns: 1fr 300px; gap: 24px; padding: 32px 44px 40px; animation: megaIn .22s var(--ease-enter); }
+.nav-bar { z-index: 2; }
+/* Dimmed page behind an open mega menu: click (or drift the pointer onto it) to close. */
+.mega-backdrop { pointer-events: auto; position: fixed; inset: 0; z-index: 1; background: rgba(13, 43, 62, .28); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); cursor: pointer; animation: fadeIn .2s var(--ease-enter); }
+.mega { pointer-events: auto; position: absolute; z-index: 2; left: var(--inset); right: var(--inset); top: calc(var(--inset) + 70px); max-height: calc(100vh - var(--nav-h) - 24px); overflow-y: auto; background: #fff; color: var(--ink); border-radius: 0 0 var(--r) var(--r); box-shadow: 0 30px 60px -20px rgba(20, 25, 30, .35); display: grid; grid-template-columns: 1fr 280px; gap: 24px; padding: 24px 44px 28px; animation: megaIn .22s var(--ease-enter); }
+.mega-close { position: absolute; top: 12px; right: 14px; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; color: var(--text-2); transition: background var(--d-hover-out), color var(--d-hover-out); }
+.mega-close:hover { background: var(--grey-100); color: var(--ink); }
+.mega-close .ico { width: 18px; height: 18px; }
 @keyframes megaIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 .mega-groups { display: grid; gap: 0; }
-.mega-group { padding: 20px 0 24px; border-top: 1px solid var(--grey-200); }
+.mega-group { padding: 16px 0 18px; border-top: 1px solid var(--grey-200); }
 .mega-group:first-child { border-top: 0; padding-top: 0; }
-.mega-group .eyebrow { display: block; margin-bottom: 14px; }
-.mega-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 24px; }
+.mega-group .eyebrow { display: block; margin-bottom: 10px; }
+.mega-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 24px; }
 .mega-item { display: flex; gap: 12px; align-items: flex-start; padding: 6px 8px; margin: -6px -8px; border-radius: var(--r); transition: background var(--d-hover-out) var(--ease-enter); }
 .mega-item:hover { background: var(--grey-50); }
 .mega-item .ico { width: 24px; height: 24px; margin-top: 1px; color: var(--ink); }
@@ -111,7 +117,7 @@
 .mega-item strong { display: block; font-size: 15px; line-height: 1.25; }
 .mega-item span.desc { display: block; font-size: 13px; line-height: 1.4; color: var(--text-2); margin-top: 3px; }
 .mega-item.plain strong { font-weight: 400; font-size: 15px; }
-.mega-promo { position: relative; overflow: hidden; border-radius: var(--r); padding: 20px; min-height: 320px; display: flex; flex-direction: column; gap: 10px; color: var(--on-dark); }
+.mega-promo { position: relative; overflow: hidden; border-radius: var(--r); padding: 20px; min-height: 260px; display: flex; flex-direction: column; gap: 10px; color: var(--on-dark); }
 .mega-promo.purple { background: linear-gradient(170deg, var(--purple-950) 0%, var(--purple-900) 45%, var(--purple-600) 100%); }
 .mega-promo.blue { background: linear-gradient(170deg, var(--blue-900) 0%, var(--blue-600) 50%, var(--cyan-200) 100%); }
 .mega-promo.yellow { background: var(--g-orange-card); color: var(--ink); }

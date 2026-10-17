@@ -69,9 +69,20 @@ export default function Header({ polarity }) {
     return () => { window.removeEventListener('keydown', onKey); document.body.classList.remove('no-scroll') }
   }, [drawer])
 
+  // Any page scroll while a mega menu is open dismisses it, so users never feel "stuck" inside the panel.
+  useEffect(() => {
+    if (!open) return
+    // wheel/touch inside the panel itself is allowed (it may need to scroll on short screens)
+    const dismiss = e => { if (e.type !== 'scroll' && e.target.closest && e.target.closest('.mega')) return; setOpen(null) }
+    window.addEventListener('scroll', dismiss, { passive: true })
+    window.addEventListener('wheel', dismiss, { passive: true })
+    window.addEventListener('touchmove', dismiss, { passive: true })
+    return () => { window.removeEventListener('scroll', dismiss); window.removeEventListener('wheel', dismiss); window.removeEventListener('touchmove', dismiss) }
+  }, [open])
+
   const enter = label => { clearTimeout(closeTimer.current); setOpen(label) }
   const leave = () => { closeTimer.current = setTimeout(() => setOpen(null), 160) }
-  const close = () => setOpen(null)
+  const close = () => { clearTimeout(closeTimer.current); setOpen(null) }
   const barClass = `nav-bar${scrolled ? ' scrolled' : ''}${open ? ' menu-open' : ''}`
   const active = menus.find(m => m.label === open)
 
@@ -96,8 +107,10 @@ export default function Header({ polarity }) {
         <button type="button" className="burger" aria-label="Open menu" aria-expanded={drawer} onClick={() => setDrawer(true)}><Icon name="menu" /></button>
       </div>
 
+      {active && <div className="mega-backdrop" onClick={close} onMouseEnter={leave} aria-hidden="true" />}
       {active && (
         <div className="mega" onMouseEnter={() => enter(active.label)} role="region" aria-label={`${active.label} menu`}>
+          <button type="button" className="mega-close" aria-label="Close menu" onClick={close}><Icon name="close" /></button>
           <div className="mega-groups">
             {active.groups.map(g => (
               <div className="mega-group" key={g.heading}>
