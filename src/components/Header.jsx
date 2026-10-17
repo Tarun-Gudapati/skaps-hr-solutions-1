@@ -48,7 +48,12 @@ function Promo({ promo, onNavigate }) {
 }
 
 export default function Header({ polarity }) {
-  const [open, setOpen] = useState(null)          // desktop mega menu label
+  // Desktop mega menu has two modes:
+  //  - hover  : a preview that shows only while the pointer is over the nav button itself
+  //  - pinned : opened by clicking the button; stays open until dismissed (click again, x, Esc, backdrop, scroll)
+  const [hover, setHover] = useState(null)
+  const [pinned, setPinned] = useState(null)
+  const open = hover || pinned
   const [drawer, setDrawer] = useState(false)     // mobile drawer
   const [sub, setSub] = useState(null)            // mobile sub-panel label
   const [scrolled, setScrolled] = useState(false)
@@ -56,7 +61,9 @@ export default function Header({ polarity }) {
   const { openDemo } = useUI()
   const closeTimer = useRef()
 
-  useEffect(() => { setOpen(null); setDrawer(false); setSub(null) }, [pathname])
+  const close = () => { clearTimeout(closeTimer.current); setHover(null); setPinned(null) }
+
+  useEffect(() => { close(); setDrawer(false); setSub(null) }, [pathname])
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll(); window.addEventListener('scroll', onScroll, { passive: true })
@@ -64,7 +71,7 @@ export default function Header({ polarity }) {
   }, [])
   useEffect(() => {
     document.body.classList.toggle('no-scroll', drawer)
-    const onKey = e => { if (e.key === 'Escape') { setOpen(null); setDrawer(false) } }
+    const onKey = e => { if (e.key === 'Escape') { close(); setDrawer(false) } }
     window.addEventListener('keydown', onKey)
     return () => { window.removeEventListener('keydown', onKey); document.body.classList.remove('no-scroll') }
   }, [drawer])
@@ -73,44 +80,50 @@ export default function Header({ polarity }) {
   useEffect(() => {
     if (!open) return
     // wheel/touch inside the panel itself is allowed (it may need to scroll on short screens)
-    const dismiss = e => { if (e.type !== 'scroll' && e.target.closest && e.target.closest('.mega')) return; setOpen(null) }
+    const dismiss = e => { if (e.type !== 'scroll' && e.target.closest && e.target.closest('.mega')) return; close() }
     window.addEventListener('scroll', dismiss, { passive: true })
     window.addEventListener('wheel', dismiss, { passive: true })
     window.addEventListener('touchmove', dismiss, { passive: true })
     return () => { window.removeEventListener('scroll', dismiss); window.removeEventListener('wheel', dismiss); window.removeEventListener('touchmove', dismiss) }
   }, [open])
 
-  const enter = label => { clearTimeout(closeTimer.current); setOpen(label) }
-  const leave = () => { closeTimer.current = setTimeout(() => setOpen(null), 160) }
-  const close = () => { clearTimeout(closeTimer.current); setOpen(null) }
+  // Hover preview: open while over the button, close (after a tiny grace period so moving between
+  // adjacent buttons doesn't flicker) as soon as the pointer leaves the button - even onto the panel.
+  const enter = label => { clearTimeout(closeTimer.current); setHover(label) }
+  const leave = () => { clearTimeout(closeTimer.current); closeTimer.current = setTimeout(() => setHover(null), 120) }
+  // Click: pin this menu open (click again to close). Pinning one menu replaces any other pinned menu.
+  const toggle = label => { clearTimeout(closeTimer.current); setHover(null); setPinned(p => (p === label ? null : label)) }
   const barClass = `nav-bar${scrolled ? ' scrolled' : ''}${open ? ' menu-open' : ''}`
   const active = menus.find(m => m.label === open)
+  const isPinned = !!active && pinned === active.label
 
   return (
-    <header className="site-header" onMouseLeave={leave}>
+    <header className="site-header">
       <div className={barClass} data-polarity={polarity}>
         <Brand />
         <ul className="nav-list">
           {menus.map(m => (
-            <li className="nav-item" key={m.label} onMouseEnter={() => enter(m.label)}>
-              <button type="button" aria-expanded={open === m.label} aria-haspopup="true" onClick={() => setOpen(open === m.label ? null : m.label)}>
+            <li className="nav-item" key={m.label} onMouseEnter={() => enter(m.label)} onMouseLeave={leave}>
+              <button type="button" className={pinned === m.label ? 'is-pinned' : undefined} aria-expanded={open === m.label} aria-haspopup="true" onClick={() => toggle(m.label)}>
                 {m.label}<Icon name="chevron" className="chev" />
               </button>
             </li>
           ))}
-          {topLinks.map(l => <li className="nav-item" key={l.to} onMouseEnter={() => enter(null)}><Link to={l.to}>{l.label}{l.badge && <span className="nav-badge">{l.badge}</span>}</Link></li>)}
+          {topLinks.map(l => <li className="nav-item" key={l.to}><Link to={l.to}>{l.label}{l.badge && <span className="nav-badge">{l.badge}</span>}</Link></li>)}
         </ul>
-        <div className="nav-right" onMouseEnter={() => enter(null)}>
+        <div className="nav-right">
           <a className="nav-phone" href={`tel:${PHONE_TEL}`}><Icon name="phone" />{PHONE}</a>
           <button type="button" className="btn btn-primary-nav" onClick={openDemo}>Schedule a consultation <Icon name="arrow" className="arrow" style={{ width: 16, height: 16 }} /></button>
         </div>
         <button type="button" className="burger" aria-label="Open menu" aria-expanded={drawer} onClick={() => setDrawer(true)}><Icon name="menu" /></button>
       </div>
 
-      {active && <div className="mega-backdrop" onClick={close} onMouseEnter={leave} aria-hidden="true" />}
+      {isPinned && <div className="mega-backdrop" onClick={close} aria-hidden="true" />}
       {active && (
-        <div className="mega" onMouseEnter={() => enter(active.label)} role="region" aria-label={`${active.label} menu`}>
-          <button type="button" className="mega-close" aria-label="Close menu" onClick={close}><Icon name="close" /></button>
+        <div className={`mega${isPinned ? ' is-pinned' : ' is-preview'}`} role="region" aria-label={`${active.label} menu`}>
+          {isPinned
+            ? <button type="button" className="mega-close" aria-label="Close menu" onClick={close}><Icon name="close" /></button>
+            : <span className="mega-hint">Click <strong>{active.label}</strong> to keep this menu open</span>}
           <div className="mega-groups">
             {active.groups.map(g => (
               <div className="mega-group" key={g.heading}>

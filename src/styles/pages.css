@@ -37,10 +37,11 @@
 }
 
 /* ---------- Logos ---------- */
-.logos { background: var(--cyan-100); padding-block: 40px 48px; }
+.logos { background: var(--cyan-100); padding-block: 40px 0; }
 
 /* ---------- Value cards strip ---------- */
-.value-strip { background: var(--g-cards); padding: 0 0 80px; }
+/* Equal breathing room above (after the logo marquee) and below (before the dark AI block). */
+.value-strip { background: var(--g-cards); padding: clamp(44px, 5vw, 64px) 0; }
 .value-card { min-height: 300px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; padding-bottom: 130px; }
 .value-card .value-art { position: absolute; left: 8%; right: 0; bottom: -6px; height: 140px; width: auto; max-width: 92%; object-fit: contain; object-position: right bottom; pointer-events: none; filter: drop-shadow(0 18px 24px rgba(13, 43, 62, .2)); -webkit-mask: linear-gradient(90deg, transparent, #000 30%); mask: linear-gradient(90deg, transparent, #000 30%); }
 .value-card p { position: relative; z-index: 1; }
