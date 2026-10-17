@@ -1,8 +1,16 @@
 import { useState } from 'react'
 import Icon from './Icon'
+import { EMAIL } from '../data/site'
 
-// Demo form — validated locally, not transmitted (same behaviour as the previous site).
-const submitLead = async () => { await new Promise(r => setTimeout(r, 650)); return { ok: true } }
+// The site is static (no backend), so requests are handed to the visitor's email client.
+const submitLead = data => {
+  const lines = [`Name: ${data.name}`, `Company: ${data.company}`, `Email: ${data.email}`, `Phone: ${data.phone}`]
+  if (data.size) lines.push(`Company size: ${data.size}`)
+  if (data.interest) lines.push(`Interested in: ${data.interest}`)
+  lines.push('', data.message)
+  const subject = `Consultation request — ${data.company}`
+  window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`
+}
 
 function Field({ name, label, error, as = 'input', required, ...props }) {
   const El = as
@@ -18,9 +26,8 @@ function Field({ name, label, error, as = 'input', required, ...props }) {
 export default function LeadForm({ compact = false }) {
   const [errors, setErrors] = useState({})
   const [sent, setSent] = useState(false)
-  const [busy, setBusy] = useState(false)
 
-  const submit = async e => {
+  const submit = e => {
     e.preventDefault()
     const form = e.currentTarget
     const data = Object.fromEntries(new FormData(form))
@@ -32,12 +39,12 @@ export default function LeadForm({ compact = false }) {
     if ((data.message || '').trim().length < 10) next.message = 'Tell us a little more about your requirements.'
     setErrors(next)
     if (Object.keys(next).length) return
-    setBusy(true); await submitLead(data); setBusy(false); setSent(true); form.reset()
+    submitLead(data); setSent(true); form.reset()
   }
 
   return (
     <form className="form-card" onSubmit={submit} noValidate>
-      {sent && <div className="success" role="status"><Icon name="check" style={{ width: 18, height: 18 }} /><div><strong>Consultation request captured</strong><span>This review form does not send or store data yet.</span></div></div>}
+      {sent && <div className="success" role="status"><Icon name="check" style={{ width: 18, height: 18 }} /><div><strong>Almost done — press send in your email app</strong><span>Your request has been drafted to <a href={`mailto:${EMAIL}`}>{EMAIL}</a>. If no email window opened, write to us there directly.</span></div></div>}
       <div className="form-row">
         <Field name="name" label="Full name" placeholder="Your name" error={errors.name} required />
         <Field name="company" label="Company name" placeholder="Your organization name" error={errors.company} required />
@@ -54,8 +61,8 @@ export default function LeadForm({ compact = false }) {
       )}
       <Field name="message" as="textarea" label="How can we help you?" placeholder="Tell us about your requirements" error={errors.message} required />
       <label className="form-consent"><input type="checkbox" name="consent" /><span>By submitting this form, you agree to receive communications from SKAPS about our HR, payroll and workforce solutions. You can opt out at any time.</span></label>
-      <button className="btn btn-block" disabled={busy}>{busy ? 'Capturing request…' : 'Send Message'} <Icon name="arrow" className="arrow" style={{ width: 16, height: 16 }} /></button>
-      <p className="form-note">Demo form — details are validated locally and are not transmitted.</p>
+      <button className="btn btn-block">Send Message <Icon name="arrow" className="arrow" style={{ width: 16, height: 16 }} /></button>
+      <p className="form-note">Submitting opens your email app with these details addressed to {EMAIL}.</p>
     </form>
   )
 }
