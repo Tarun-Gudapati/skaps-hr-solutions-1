@@ -22,6 +22,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build:root
+        env:
+          VITE_LEAD_ENDPOINT: ${{ vars.VITE_LEAD_ENDPOINT }}
+          VITE_LEAD_ACCESS_KEY: ${{ vars.VITE_LEAD_ACCESS_KEY }}
       - name: Publish built site to the monsterasp branch
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -29,5 +32,4 @@ jobs:
           publish_branch: monsterasp
           publish_dir: ./dist-root
           force_orphan: true
-          enable_jekyll: true
           commit_message: "Build for MonsterASP from ${{ github.sha }}"

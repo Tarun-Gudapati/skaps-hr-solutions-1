@@ -1,13 +1,14 @@
 import { Link, useParams, Navigate } from 'react-router-dom'
 import Icon from '../components/Icon'
-import { Crystal } from '../components/Art'
+import { Mesh, SpotArt } from '../components/Art'
 import { usePolarity } from '../components/Layout'
-import { Arrow, DemoButton, LogoMarquee, Testimonials, FAQ, CTABand, SectionHead, MoreServices, Steps } from '../components/Sections'
-import { getService, stats, complianceBadges, faqs } from '../data/site'
+import { Arrow, DemoButton, CloseLine, SectionHead, MoreServices } from '../components/Sections'
+import { getService, stats, complianceBadges } from '../data/site'
 
-const heroTheme = { blue: 'blue', lime: 'lime', purple: 'purple', cyan: 'cyan' }
+const featureAccents = ['blue', 'lime', 'cyan', 'purple']
+const featureIcons = ['target', 'people', 'shield', 'chart']
 const statementFor = {
-  'executive-search': ['Leaders who deliver, not just résumés.', 'in days'],
+  'executive-search': ['Leaders who deliver, not just résumés.', 'deliver'],
   'recruitment-process': ['Hire in days, not months.', 'in days'],
   'staffing-solutions': ['Scale your team, your way.', 'your way'],
   'interview-support': ['Better interviews, better hires.', 'better hires'],
@@ -36,27 +37,31 @@ export default function ServicePage() {
 
   return (
     <>
-      <section className={`page-hero ${heroTheme[s.accent]}`}>
+      <section className="page-hero">
+        <Mesh />
         <div className="container page-hero-grid">
           <div className="page-hero-copy">
-            <span className="eyebrow">{s.group} · SKAPS HR SOLUTIONS</span>
+            <span className="eyebrow muted">{s.group}</span>
             <h1 className="t-h1">{s.title}.</h1>
             <p className="t-body-lg">{s.summary}</p>
-            <ul className="checklist">{s.points.slice(0, 3).map(p => <li key={p}><Icon name="check" />{p}</li>)}</ul>
             <div className="actions"><DemoButton /><Link className="btn btn-secondary" to="/contact">Contact our team</Link></div>
           </div>
-          <div className="page-hero-art"><Crystal accent={s.accent} style={{ right: -60, width: 560, height: 560 }} /></div>
+          <div className="page-hero-aside reveal">
+            <div className="glance-card">
+              <span className="eyebrow muted">What’s included</span>
+              <ul className="checklist">{s.points.slice(0, 4).map(p => <li key={p}><Icon name="check" />{p}</li>)}</ul>
+            </div>
+          </div>
         </div>
       </section>
-      <LogoMarquee />
-
       <section className="section">
         <div className="container">
           <SectionHead title={<Highlight text={statement} word={word} />} copy={s.detail} />
           <div className="feature-grid">
             {s.points.map((p, i) => (
               <article className="feature-card reveal" key={p}>
-                <div className={`media-panel ${['blue', 'lime', 'cyan', 'purple'][i % 4]}`}><Crystal accent={['blue', 'lime', 'cyan', 'purple'][i % 4]} style={{ width: 110, height: 110 }} /></div>
+                <div className={`media-panel ${featureAccents[i % 4]}`}><SpotArt icon={featureIcons[i % 4]} accent={featureAccents[i % 4]} style={{ maxWidth: 180 }} /></div>
+                <span className="eyebrow muted">{String(i + 1).padStart(2, '0')}</span>
                 <h3 className="t-h3">{p}</h3>
               </article>
             ))}
@@ -78,7 +83,7 @@ export default function ServicePage() {
           <SectionHead center={false} title={`What companies use ${s.title.replace(' (India)', '')} for`} copy={s.summary} />
           <div className="usecase-grid">
             {s.points.map((p, i) => <div className="usecase reveal" key={p}><span className="ico-box"><Icon name={['globe', 'people', 'doc', 'chart', 'shield', 'spark'][i % 6]} /></span><p>{p}</p></div>)}
-            <div className="usecase reveal"><span className="ico-box"><Icon name="ai" /></span><p>SKAPS Intelligence assists with matching, anomaly detection and compliance monitoring across this service.</p></div>
+            <div className="usecase reveal"><span className="ico-box"><Icon name="ai" /></span><p><b>{s.ai[0]}:</b> {s.ai[1]}</p></div>
             <div className="usecase reveal"><span className="ico-box"><Icon name="lock" /></span><p>Strict employee-data confidentiality and audit-ready documentation on every engagement.</p></div>
           </div>
         </div>
@@ -100,17 +105,8 @@ export default function ServicePage() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <SectionHead title="How the engagement works." copy="A focused process keeps every engagement transparent, efficient and aligned." />
-          <Steps />
-        </div>
-      </section>
-
-      <Testimonials />
       <MoreServices exclude={s.slug} />
-      <CTABand title={<>{s.title} <b>without the overhead.</b></>} secondary="See all services" secondaryTo="/services" />
-      <FAQ items={faqs} />
+      <CloseLine>Ready to talk about {s.title.replace(/\.$/, '')}?</CloseLine>
     </>
   )
 }

@@ -1,15 +1,23 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 import Icon from './Icon'
 import LeadForm from './LeadForm'
 import { PHONE, PHONE_TEL, EMAIL, YEARS } from '../data/site'
 
 export default function DemoModal({ onClose }) {
+  const { pathname } = useLocation()
+  const openedAt = useRef(pathname)
+  const doneTimer = useRef()
+
   useEffect(() => {
     const onKey = e => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', onKey)
     document.body.classList.add('no-scroll')
-    return () => { document.removeEventListener('keydown', onKey); document.body.classList.remove('no-scroll') }
+    return () => { document.removeEventListener('keydown', onKey); document.body.classList.remove('no-scroll'); clearTimeout(doneTimer.current) }
   }, [onClose])
+
+  // Browser back/forward (or any navigation) dismisses the modal.
+  useEffect(() => { if (pathname !== openedAt.current) onClose() }, [pathname, onClose])
 
   return (
     <div className="modal-backdrop" role="presentation" onMouseDown={e => { if (e.target === e.currentTarget) onClose() }}>
@@ -17,11 +25,11 @@ export default function DemoModal({ onClose }) {
         <button type="button" className="modal-close" onClick={onClose} aria-label="Close" autoFocus><Icon name="close" style={{ width: 18, height: 18 }} /></button>
         <div className="modal-copy">
           <h2 id="demo-title" className="t-h1" style={{ maxWidth: 480 }}>Schedule a consultation, discover SKAPS in action</h2>
-          <p className="t-body-lg t-muted" style={{ maxWidth: 440 }}>Whether you are looking to streamline payroll management, expand your workforce, or strengthen compliance operations, our team is ready to support your business with reliable workforce solutions.</p>
+          <p className="t-body-lg t-muted" style={{ maxWidth: 440 }}>Whether you are looking to streamline payroll management, expand your workforce, or strengthen compliance operations, our team — backed by SKAPS Intelligence — is ready to support your business.</p>
           <ul className="checklist">
             <li><Icon name="check" />Step 1: Fill in your details and we will call you back.</li>
             <li><Icon name="check" />Step 2: Join a personalized 30-minute consultation with a SKAPS specialist.</li>
-            <li><Icon name="check" />Step 3: Get answers on engagement models, pricing and compliance. No obligation.</li>
+            <li><Icon name="check" />Step 3: See an AI-assisted workforce plan with engagement models, pricing and compliance. No obligation.</li>
           </ul>
           <div className="ratings">
             <span><b>{YEARS}</b> years of industry excellence</span>
@@ -30,7 +38,7 @@ export default function DemoModal({ onClose }) {
             <span><a href={`mailto:${EMAIL}`}>{EMAIL}</a></span>
           </div>
         </div>
-        <LeadForm compact onDone={() => {}} />
+        <LeadForm compact onDone={() => { doneTimer.current = setTimeout(onClose, 3500) }} />
       </section>
     </div>
   )

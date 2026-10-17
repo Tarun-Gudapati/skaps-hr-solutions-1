@@ -3,6 +3,8 @@ import Icon from './Icon'
 import { Brand } from './Header'
 import { services, needs, industries, socials, footerIntro, PHONE, PHONE_TEL, EMAIL, ADDRESS, BRAND_FULL } from '../data/site'
 
+const liveSocials = socials.filter(([, , href]) => href && href !== '#')
+
 export default function Footer({ footnote }) {
   return (
     <footer className="site-footer">
@@ -13,7 +15,7 @@ export default function Footer({ footnote }) {
             <div className="footer-brand">
               <Brand />
               <p>{footerIntro}</p>
-              {socials.some(([, , href]) => href) && <div className="socials">{socials.filter(([, , href]) => href).map(([l, i, href]) => <a key={i} href={href} target="_blank" rel="noopener noreferrer" aria-label={`${BRAND_FULL} on ${l}`}><Icon name={i} /></a>)}</div>}
+              {liveSocials.length > 0 && <div className="socials">{liveSocials.map(([l, i, href]) => <a key={i} href={href} target="_blank" rel="noopener noreferrer" aria-label={`${BRAND_FULL} on ${l}`}><Icon name={i} /></a>)}</div>}
             </div>
             <div className="footer-col">
               <h4>Services</h4>
@@ -41,7 +43,7 @@ export default function Footer({ footnote }) {
             </div>
           </div>
           <div className="footer-bottom">
-            <span>© 2026 SKAPS HR Solutions. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} SKAPS HR Solutions. All rights reserved.</span>
             <div className="links"><Link to="/compliance">Compliance</Link><Link to="/faq">FAQ</Link><Link to="/contact">Contact</Link><span>India · United States · Australia</span></div>
           </div>
         </div>

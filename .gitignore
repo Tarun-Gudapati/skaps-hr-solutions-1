@@ -1,6 +1,8 @@
 node_modules
 dist
 dist-root
+.env.local
+.env.*.local
 # design research (remote.com screenshots/map) - not part of the site
 reference/
 .DS_Store

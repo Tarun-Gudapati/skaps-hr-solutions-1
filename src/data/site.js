@@ -64,6 +64,7 @@ export const services = [
     detail: 'SKAPS goes beyond advertised job postings to identify and engage senior-level leaders who can deliver meaningful business results and sustainable organizational change.',
     points: ['Extensive professional and industry networks', 'Proactive, targeted candidate outreach', 'Confidential and time-sensitive delivery', 'Rigorous pre-qualification and quality assurance'],
     nav: 'Senior leaders who drive outcomes',
+    ai: ['AI talent mapping', 'SKAPS Intelligence maps leadership talent across companies and markets, so we approach the right executives first.'],
   },
   {
     slug: 'recruitment-process', group: 'Talent', icon: 'people', accent: 'lime',
@@ -71,6 +72,7 @@ export const services = [
     detail: 'Our structured recruitment process helps identify, assess, and place the right candidates while creating a smooth experience for employers and prospective employees.',
     points: ['Requirement consultation and role definition', 'Job descriptions and interview planning', 'Candidate screening and shortlisting', 'Selection, induction, and onboarding support'],
     nav: 'Identify, evaluate, select and onboard',
+    ai: ['AI screening & ranking', 'Every applicant is screened and ranked against the role scorecard, so consultants spend time only on the strongest fits.'],
   },
   {
     slug: 'staffing-solutions', group: 'Talent', icon: 'building', accent: 'purple',
@@ -78,6 +80,7 @@ export const services = [
     detail: 'SKAPS delivers flexible staffing solutions that integrate with your existing HR function, either as a remote extension of your team or through dedicated professionals working on site.',
     points: ['Remote HR expertise that extends your team', 'A dedicated on-site HR partner', 'Customized strategies aligned with business goals'],
     nav: 'Contract, temporary and dedicated teams',
+    ai: ['AI demand forecasting', 'Headcount forecasts flag when you will need to scale up or down, before projects slip.'],
   },
   {
     slug: 'interview-support', group: 'Talent', icon: 'doc', accent: 'cyan',
@@ -85,6 +88,7 @@ export const services = [
     detail: 'Our experienced HR professionals work alongside your recruitment managers to improve candidate assessment and selection, particularly during peak workloads or specialized hiring drives.',
     points: ['Seasoned recruitment expertise', 'Support during peak recruitment periods', 'Help with targeted recruitment campaigns', 'Impartial and professional assessment'],
     nav: 'On-site assessment and selection help',
+    ai: ['AI interview kits', 'Role-specific question banks and structured scorecards are generated for every interview loop.'],
   },
   {
     slug: 'hr-consulting', group: 'Advisory & Growth', icon: 'briefcase', accent: 'cyan',
@@ -92,6 +96,7 @@ export const services = [
     detail: 'SKAPS provides strategic guidance and practical solutions that help organizations strengthen HR operations, solve complex people challenges, and maintain regulatory compliance.',
     points: ['HR policies and procedures', 'Performance-management systems', 'Compensation and benefits planning', 'Organizational change and employee relations'],
     nav: 'Policies, performance and compensation',
+    ai: ['HR policy copilot', 'Policy drafts and benchmarks are generated from your context, then refined by SKAPS consultants.'],
   },
   {
     slug: 'payroll-management-india', group: 'Payroll & Compliance', icon: 'doc', accent: 'blue',
@@ -99,6 +104,7 @@ export const services = [
     detail: 'Our automated and ISO-certified solution manages Indian payroll with confidentiality, efficiency, and strict compliance so your team can stay focused on core business activities.',
     points: ['Proactive support and legislative updates', 'A dedicated personal manager', 'Strict employee-data confidentiality', 'Secure ERP access to payslips and leave information'],
     nav: 'ISO-certified Indian payroll, on one platform',
+    ai: ['Payroll anomaly detection', 'Every pay run is scanned for salary, deduction and attendance outliers before it is finalized.'],
   },
   {
     slug: 'us-payroll-services', group: 'Payroll & Compliance', icon: 'chart', accent: 'lime',
@@ -106,6 +112,7 @@ export const services = [
     detail: 'SKAPS handles complex federal, state, and local payroll requirements for US workforces, delivering accurate and timely processing while your team concentrates on business operations.',
     points: ['Wages, deductions, and withholdings', 'Federal, state, and local tax filings', 'Direct deposits and paystubs', 'Year-end forms and new-hire reporting'],
     nav: 'Federal, state and local payroll compliance',
+    ai: ['Multi-state tax watch', 'Federal, state and local rate changes are tracked automatically, with filing deadlines flagged in advance.'],
   },
   {
     slug: 'training-development', group: 'Advisory & Growth', icon: 'spark', accent: 'purple',
@@ -113,6 +120,7 @@ export const services = [
     detail: 'We identify skill gaps and build engaging workshops, seminars, and e-learning programs tailored to your industry and business requirements.',
     points: ['Leadership-development programs', 'Skill-enhancement workshops', 'Communication and teamwork training', 'Performance coaching and mentoring'],
     nav: 'Workshops, e-learning and coaching',
+    ai: ['AI skill-gap analysis', 'Skill gaps are mapped across teams and turned into personalised learning paths.'],
   },
   {
     slug: 'compliance-legal', group: 'Payroll & Compliance', icon: 'shield', accent: 'purple',
@@ -120,6 +128,7 @@ export const services = [
     detail: 'SKAPS helps organizations navigate changing labor laws and statutory requirements, reducing occupational risk and preventing penalties or legal complications.',
     points: ['Comprehensive compliance audit', 'Detailed strengths-and-gaps report', 'Clear and actionable improvement plan', 'Ongoing monthly compliance management'],
     nav: 'Labor law adherence, audits and monitoring',
+    ai: ['Compliance watchtower', 'Statutory and labor-law updates are tracked and translated into a clear action list for your team.'],
   },
   {
     slug: 'hr-technology', group: 'Advisory & Growth', icon: 'chart', accent: 'blue',
@@ -127,6 +136,7 @@ export const services = [
     detail: 'SKAPS helps select, implement, and optimize HR technology that streamlines processes and creates a stronger employee experience.',
     points: ['HRIS implementation and optimization', 'Applicant Tracking System setup', 'Performance-management software integration', 'Payroll, analytics, and reporting tools'],
     nav: 'HRIS, ATS, analytics and AI tooling',
+    ai: ['AI-ready HR stack', 'HRIS, ATS and analytics set up with AI assistants and automations built in from day one.'],
   },
   {
     slug: 'global-workforce', group: 'Advisory & Growth', icon: 'globe', accent: 'cyan',
@@ -134,6 +144,7 @@ export const services = [
     detail: 'We support global companies entering India by simplifying hiring, onboarding, payroll, policies, and ongoing workforce management while accounting for local regulations and culture.',
     points: ['Legal-entity and compliance setup', 'Talent acquisition and onboarding', 'Localized HR-policy development', 'Remote and hybrid model consulting'],
     nav: 'Enter India with a compliant team',
+    ai: ['India market intelligence', 'Salary benchmarks, talent density and hiring timelines for Indian cities, before you commit.'],
   },
   {
     slug: 'coe-coworking', group: 'Advisory & Growth', icon: 'building', accent: 'lime',
@@ -141,6 +152,7 @@ export const services = [
     detail: 'SKAPS helps global companies establish a physical presence in India through site selection, infrastructure setup, registrations, workspace sourcing, and ongoing operations.',
     points: ['Strategic location and site selection', 'Office infrastructure and IT support', 'Legal and regulatory compliance', 'Co-working and COE operational support'],
     nav: 'Centers of Excellence and workspaces',
+    ai: ['Location intelligence', 'Data-led site selection compares talent pools, costs and infrastructure across cities.'],
   },
 ]
 
@@ -176,6 +188,13 @@ export const needs = [
   ['Payroll Outsourcing', 'Hand off payroll processing and compliance to a dependable partner.', 'doc', 'payroll-outsourcing'],
 ]
 
+export const needAI = {
+  'contract-staffing': 'AI-ranked shortlists in days',
+  'temporary-staffing': 'AI demand forecasting for seasonal peaks',
+  'dedicated-teams': 'AI analytics on team performance and attrition',
+  'payroll-outsourcing': 'AI anomaly checks on every pay run',
+}
+
 export const useCases = [
   ['Hire in India', 'Build teams in India without an in-house HR function', 'globe', '/services/global-workforce'],
   ['Run payroll (India & US)', 'Accurate, compliant payroll across both regions', 'doc', '/services/payroll-management-india'],
@@ -185,12 +204,13 @@ export const useCases = [
   ['Scale with AI', 'AI-assisted hiring, payroll and compliance intelligence', 'ai', '/ai'],
 ]
 
+// [number, title, description, AI assist label]
 export const steps = [
-  ['01', 'Consultation and Workforce Planning', 'We understand your goals, gaps and workforce priorities.'],
-  ['02', 'Talent Sourcing and Selection', 'We identify and screen role-ready professionals for your team.'],
-  ['03', 'Onboarding and Documentation', 'We handle onboarding, documentation and statutory formalities.'],
-  ['04', 'Payroll and Compliance Management', 'We run accurate payroll and keep operations fully compliant.'],
-  ['05', 'Ongoing Workforce Support', 'We measure, improve and continue supporting your growth.'],
+  ['01', 'Consultation and Workforce Planning', 'We understand your goals, gaps and workforce priorities.', 'AI workforce plan'],
+  ['02', 'Talent Sourcing and Selection', 'We identify and screen role-ready professionals for your team.', 'AI-ranked shortlists'],
+  ['03', 'Onboarding and Documentation', 'We handle onboarding, documentation and statutory formalities.', 'Automated documents'],
+  ['04', 'Payroll and Compliance Management', 'We run accurate payroll and keep operations fully compliant.', 'AI anomaly checks'],
+  ['05', 'Ongoing Workforce Support', 'We measure, improve and continue supporting your growth.', 'Predictive analytics'],
 ]
 
 export const complianceItems = ['Statutory Compliance Management', 'Labor Law Adherence', 'Employee Benefits Administration', 'Risk Reduction and Documentation']
@@ -210,7 +230,44 @@ export const faqs = [
   ['How does SKAPS ensure compliance with labor regulations?', 'Our dedicated compliance team stays current with labor laws and statutory requirements, maintaining accurate documentation and standardized processes across every engagement.'],
   ['Can SKAPS support businesses operating in multiple locations?', 'Yes. We support distributed and multi-location workforces, coordinating payroll, compliance and operations consistently across regions.'],
   ['How does SKAPS use AI in its services?', 'SKAPS Intelligence, our AI layer, assists our consultants with candidate matching and ranking, flags payroll anomalies before a cycle closes, monitors statutory and labor-law updates, and powers workforce analytics. Every AI recommendation is reviewed by an experienced SKAPS professional before it reaches you.'],
+  ['Is my employee data safe with SKAPS AI?', 'Yes. Employee and payroll data is used only to deliver your engagement, access is role-based, every automated action is logged, and your data is never used to train third-party AI models.'],
 ]
+
+// "AI at work" panel on the home page: one illustrative run per workflow.
+// stages: [label, count, 'ai' | 'human']; log lines appear one by one.
+export const aiWorkflows = [
+  {
+    key: 'hiring', tab: 'Hiring', blurb: 'Sourcing, screening and ranking in hours, not weeks.',
+    run: 'Hiring run · Senior Data Engineer, Hyderabad',
+    stages: [['Profiles sourced', 1240, 'ai'], ['Skills matched', 312, 'ai'], ['AI-ranked shortlist', 18, 'ai'], ['Specialist reviewed', 6, 'human'], ['Offers made', 2, 'human']],
+    log: ['Parsed 1,240 profiles from 6 talent sources', 'Matched Spark, AWS, Airflow — 312 strong fits', 'Removed 9 duplicate profiles', 'Ranked top 18 by role fit — best match 94%', 'Shortlist sent to your SKAPS consultant', 'Consultant approved 6 candidates for interviews'],
+    kpi: ['Time to shortlist', '48 hrs'],
+  },
+  {
+    key: 'payroll', tab: 'Payroll', blurb: 'Every payslip checked before anyone gets paid.',
+    run: 'October payroll · 128 employees',
+    stages: [['Payslips generated', 128, 'ai'], ['Automated checks run', 3840, 'ai'], ['Anomalies flagged', 2, 'ai'], ['Resolved by specialist', 2, 'human'], ['Paid on time', 128, 'human']],
+    log: ['Pulled attendance, leave and reimbursements', 'Ran 30 checks per payslip — 3,840 in total', 'Flagged duplicate reimbursement — ₹12,400', 'Flagged missing attendance — 3 days', 'Payroll manager resolved both exceptions', '128 salaries released on schedule'],
+    kpi: ['Errors reaching employees', '0'],
+  },
+  {
+    key: 'compliance', tab: 'Compliance', blurb: 'Law changes tracked and turned into actions.',
+    run: 'Compliance watch · India entity',
+    stages: [['Sources monitored', 640, 'ai'], ['Changes detected', 12, 'ai'], ['Relevant to you', 3, 'ai'], ['Actions assigned', 3, 'human'], ['Filed on time', 3, 'human']],
+    log: ['Scanned 640 central and state notifications', 'Detected 12 changes this month', '3 apply to your Telangana entity', 'PF & ESI return due in 6 days — owner assigned', 'Professional tax due in 12 days — owner assigned', 'All filings on track'],
+    kpi: ['Missed deadlines', '0'],
+  },
+]
+
+// Year-on-year series behind the "by the numbers" charts. Final values match the headline stats;
+// earlier years are indicative trend lines. TODO(Skaps): replace with actual yearly figures.
+export const statYears = ['2020', '2021', '2022', '2023', '2024', '2025', '2026']
+export const statSeries = {
+  clients: [9, 14, 20, 27, 35, 43, 50],
+  workforce: [110, 210, 330, 470, 640, 830, 1000],
+  placements: [120, 290, 480, 720, 980, 1250, 1500],
+  payrollCr: [2, 4, 7, 11, 15, 20, 25],
+}
 
 // Our Story (About) — original copy preserved, AI narrative added.
 export const story = [
@@ -244,7 +301,7 @@ export const values = [
   ['Partnership', 'Enduring relationships and measurable positive impact.'],
 ]
 
-// Profiles without a URL are hidden in the footer; add the real link to show the icon.
-export const socials = [['LinkedIn', 'linkedin', ''], ['Facebook', 'facebook', ''], ['Instagram', 'instagram', ''], ['Twitter', 'twitter', '']]
+// TODO(Skaps): add real profile URLs — entries left as '#' are hidden in the footer.
+export const socials = [['LinkedIn', 'linkedin', '#'], ['Facebook', 'facebook', '#'], ['Instagram', 'instagram', '#'], ['Twitter', 'twitter', '#']]
 
-export const footerIntro = 'SKAPS HR Solutions is a trusted workforce management and recruitment solutions provider helping organizations streamline hiring, payroll, compliance, and employee management across multiple industries.'
+export const footerIntro = 'SKAPS HR Solutions is an AI-powered workforce management and recruitment partner helping organizations streamline hiring, payroll, compliance, and employee management across multiple industries.'

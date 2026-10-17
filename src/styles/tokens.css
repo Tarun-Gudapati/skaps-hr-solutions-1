@@ -41,7 +41,10 @@
   --stroke-soft: rgba(18, 35, 49, .12);
 
   /* Shape */
-  --r-2: 2px; --r: 6px; --r-16: 16px; --r-32: 32px; --r-full: 9999px;
+  --r-2: 2px; --r: 10px; --r-16: 16px; --r-32: 32px; --r-full: 9999px;
+  --bg-soft: #f6f9fc;
+  --shadow-card: 0 1px 2px rgba(10, 37, 64, .06), 0 8px 24px -12px rgba(10, 37, 64, .18);
+  --shadow-float: 0 30px 60px -20px rgba(10, 37, 64, .3), 0 18px 36px -18px rgba(0, 0, 0, .2);
   --inset: 10px;
 
   /* Type */
@@ -71,7 +74,8 @@
   --g-cta: linear-gradient(180deg, var(--cyan-100) 0%, var(--purple-400) 100%);
   --g-cta-card: linear-gradient(180deg, var(--purple-700) 0%, var(--purple-900) 100%);
   --g-footer: linear-gradient(180deg, var(--purple-600) 0%, var(--purple-700) 50%, var(--purple-900) 100%);
-  --g-stats: linear-gradient(180deg, var(--lime-300) 0%, var(--lime-500) 60%, var(--lime-700) 100%);
+  --g-growth: linear-gradient(160deg, #0a3446 0%, #0d5470 48%, #11809a 100%);
+  --g-blue-hero: linear-gradient(180deg, var(--blue-600) 0%, var(--blue-400) 45%, var(--cyan-100) 100%);
   --g-sky: linear-gradient(180deg, var(--cyan-100) 0%, var(--blue-400) 100%);
   --g-form: linear-gradient(160deg, var(--lime-100) 0%, var(--cyan-100) 100%);
   --g-blue-card: linear-gradient(160deg, var(--blue-500) 0%, var(--blue-900) 100%);
